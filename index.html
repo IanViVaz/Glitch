@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glitch — Renta de equipo para eventos</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --font-display:'Syne',sans-serif;
+      --gold:#2DD4BF;--gold-dim:rgba(45,212,191,0.12);
+      --teal:#67E8F9;--teal-dim:rgba(103,232,249,0.12);
+      --bg-base:#0a0a0f;--bg-mid:#0f0e12;--bg-card:#141218;
+      --text-main:#f0ede8;--text-muted:rgba(240,237,232,0.5);
+      --text-dim:rgba(240,237,232,0.28);--border:rgba(255,255,255,0.08);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--bg-base);color:var(--text-main);overflow-x:hidden;}
+
+    /* ══════════════════════════════
+       HERO — foto de fondo + parallax
+    ══════════════════════════════ */
+    .hero{
+      position:relative;
+      height:100vh;min-height:600px;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      text-align:center;
+      overflow:hidden;
+    }
+
+    /* Foto de fondo con efecto parallax */
+    .hero-photo{
+      position:absolute;inset:0;z-index:0;
+      background-image:url('img/hero-bg.jpg');
+      background-size:cover;background-position:center top;
+      filter:brightness(0.35) grayscale(0.3);
+      transform:scale(1.08);
+      will-change:transform;
+    }
+
+    /* Overlay degradado para que el texto sea legible */
+    .hero-photo::after{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(10,10,15,0.2) 0%,
+        rgba(10,10,15,0.1) 40%,
+        rgba(10,10,15,0.7) 80%,
+        rgba(10,10,15,1) 100%
+      );
+    }
+
+    /* Efecto de "slide reveal" — panel negro que sube al hacer scroll */
+    .hero-slide-panel{
+      position:absolute;bottom:-2px;left:0;right:0;
+      height:30vh;z-index:2;
+      background:linear-gradient(to bottom, transparent, var(--bg-base) 80%);
+      pointer-events:none;
+    }
+
+    /* Contenido hero */
+    .hero-content{
+      position:relative;z-index:1;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      padding:2rem;
+    }
+
+    .hero-eyebrow{
+      font-family:var(--font-display);
+      font-size:clamp(15px,2vw,20px);font-weight:700;letter-spacing:2px;text-transform:uppercase;
+      color:var(--gold);margin-bottom:1.5rem;
+      opacity:0;animation:fadeUp .7s .1s forwards;
+      max-width:640px;line-height:1.4;text-align:center;
+    }
+
+    /* GLITCH — título gigante */
+    .hero-brand{
+      font-family:var(--font-display);
+      font-size:clamp(80px,16vw,200px);
+      font-weight:900;line-height:0.9;
+      letter-spacing:-6px;
+      color:var(--text-main);
+      margin-bottom:1rem;
+      opacity:0;animation:fadeUp .6s .2s forwards;
+      text-transform:uppercase;
+    }
+
+    .hero-sub-title{
+      font-family:var(--font-display);
+      font-size:clamp(14px,2.5vw,22px);
+      font-weight:600;
+      color:var(--gold);
+      letter-spacing:1px;
+      margin-bottom:2rem;
+      opacity:0;animation:fadeUp .7s .35s forwards;
+      max-width:680px;line-height:1.5;
+    }
+
+    .hero-desc{
+      font-size:15px;color:var(--text-muted);
+      max-width:480px;line-height:1.7;margin-bottom:2.5rem;
+      opacity:0;animation:fadeUp .7s .5s forwards;
+    }
+
+    .hero-btns{
+      display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+      opacity:0;animation:fadeUp .7s .65s forwards;
+    }
+
+    .btn-primary{display:inline-block;background:var(--gold);color:#0a0a0f;border:none;padding:.9rem 2.2rem;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .2s,transform .2s;}
+    .btn-primary:hover{opacity:.88;transform:translateY(-2px);}
+    .btn-secondary{display:inline-block;background:transparent;color:var(--text-main);border:.5px solid rgba(240,237,232,.25);padding:.9rem 2.2rem;border-radius:8px;font-size:15px;cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s,transform .2s;}
+    .btn-secondary:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+
+    /* Stats */
+    .hero-stats{
+      display:flex;gap:4rem;margin-top:4rem;
+      border-top:.5px solid rgba(255,255,255,0.1);padding-top:2rem;
+      flex-wrap:wrap;justify-content:center;
+      opacity:0;animation:fadeUp .7s .8s forwards;
+    }
+    .stat-num{font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--gold);}
+    .stat-label{font-size:11px;color:var(--text-dim);margin-top:4px;letter-spacing:.5px;}
+
+    /* Scroll indicator */
+    .scroll-hint{
+      position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+      z-index:3;display:flex;flex-direction:column;align-items:center;gap:6px;
+      opacity:0;animation:fadeUp .7s 1.2s forwards;
+    }
+    .scroll-hint span{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);}
+    .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease-in-out infinite;}
+    @keyframes scrollPulse{0%,100%{opacity:.4;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.2);}}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+
+    /* ══════════════════════════════
+       SERVICIOS — RUEDA
+    ══════════════════════════════ */
+    .services-section{padding:6rem 2rem;background:var(--bg-mid);text-align:center;position:relative;overflow:hidden;}
+    .eyebrow{font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block;}
+    .section-title{font-family:var(--font-display);font-size:38px;font-weight:700;letter-spacing:-1px;color:var(--text-main);line-height:1.12;margin-bottom:.8rem;}
+    .section-sub{font-size:15px;color:var(--text-muted);max-width:500px;line-height:1.7;margin:0 auto 3rem;}
+
+    .wheel-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;background-repeat:no-repeat;filter:grayscale(1) brightness(.32);opacity:0;transform:scale(1.04);transition:opacity .45s ease,transform .6s ease;}
+    .wheel-bg.visible{opacity:1;transform:scale(1);}
+    .wheel-bg-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,10,15,.6) 0%,rgba(45,212,191,.06) 50%,rgba(10,10,15,.8) 100%);opacity:0;transition:opacity .6s ease;}
+    .wheel-bg-overlay.visible{opacity:1;}
+
+    .wheel-container{position:relative;width:560px;height:560px;margin:0 auto;z-index:2;}
+    .wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:148px;height:148px;border-radius:50%;background:linear-gradient(135deg,rgba(45,212,191,.18),rgba(45,212,191,.06));border:.5px solid rgba(45,212,191,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:4;transition:all .4s;}
+    .wheel-center i{font-size:28px;color:var(--gold);margin-bottom:6px;transition:all .3s;}
+    .wheel-center-label{font-size:11px;font-weight:500;color:var(--text-main);line-height:1.3;padding:0 12px;}
+
+    .wheel-item{position:absolute;width:104px;height:104px;border-radius:50%;background:var(--bg-card);border:.5px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;z-index:3;transition:transform .35s cubic-bezier(.4,0,.2,1),border-color .3s,background .3s,box-shadow .3s;}
+    .wheel-item i{font-size:22px;color:var(--text-muted);margin-bottom:5px;transition:color .3s,font-size .3s;}
+    .wheel-item span{font-size:10px;color:var(--text-dim);line-height:1.3;padding:0 6px;transition:color .3s;}
+    .wheel-item:hover,.wheel-item.active{background:rgba(10,10,15,.9);border-color:var(--gold);transform:scale(1.18)!important;box-shadow:0 0 28px rgba(45,212,191,.25);}
+    .wheel-item:hover i,.wheel-item.active i{color:var(--gold);font-size:24px;}
+    .wheel-item:hover span,.wheel-item.active span{color:var(--text-muted);}
+
+    /* SVG rueda — línea continua base, solo dots de flujo */
+    .wheel-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;}
+    .wheel-line-base{stroke:rgba(45,212,191,.15);stroke-width:1;fill:none;}   /* siempre visible, tenue */
+    .wheel-line-active{stroke:rgba(45,212,191,.5);stroke-width:1.5;fill:none;opacity:0;transition:opacity .3s;}
+    .wheel-line-active.on{opacity:1;}
+    .wheel-dot{fill:var(--gold);opacity:0;}
+    .wheel-dot.active{animation:dotTravel 1.1s linear infinite;}
+    @keyframes dotTravel{0%{opacity:0;}8%{opacity:1;}88%{opacity:1;}100%{opacity:0;}}
+
+    /* ══════════════════════════════
+       CARRUSEL — NUESTROS SERVICIOS
+    ══════════════════════════════ */
+    .carousel-section{background:var(--bg-base);overflow:hidden;border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);}
+    .carousel-header{padding:4rem 3rem 2rem;}
+    .carousel-track-wrapper{overflow:hidden;}
+    .carousel-track{display:flex;gap:0;width:max-content;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+
+    .carousel-card{width:320px;height:440px;background:var(--bg-mid);border-right:.5px solid var(--border);padding:2rem 1.75rem;display:flex;flex-direction:column;cursor:pointer;text-decoration:none;color:inherit;flex-shrink:0;position:relative;overflow:hidden;}
+    .carousel-card::before{content:'';position:absolute;inset:0;background-image:var(--card-img);background-size:cover;background-position:center;opacity:0;transform:scale(1.08);transition:opacity .45s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1);z-index:0;}
+    .carousel-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,15,.3) 0%,rgba(10,10,15,.75) 60%,rgba(10,10,15,.92) 100%);opacity:0;transition:opacity .4s;z-index:1;}
+    .carousel-card:hover::before{opacity:1;transform:scale(1);}
+    .carousel-card:hover::after{opacity:1;}
+    .carousel-card-num,.carousel-card-icon,.carousel-card-body,.carousel-card-arrow{position:relative;z-index:2;}
+    .carousel-card-num{font-family:var(--font-display);font-size:52px;font-weight:800;color:rgba(45,212,191,.08);line-height:1;margin-bottom:1.2rem;transition:color .35s;}
+    .carousel-card:hover .carousel-card-num{color:rgba(45,212,191,.15);}
+    .carousel-card-icon{width:46px;height:46px;border-radius:10px;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--gold);margin-bottom:1.2rem;transition:background .3s,transform .3s;}
+    .carousel-card:hover .carousel-card-icon{background:rgba(45,212,191,.2);transform:scale(1.1);}
+    .carousel-card-body{flex:1;}
+    .carousel-card-body h3{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--text-main);margin-bottom:.6rem;letter-spacing:-.3px;transition:color .3s;}
+    .carousel-card:hover .carousel-card-body h3{color:#fff;}
+    .carousel-card-body p{font-size:12.5px;color:var(--text-muted);line-height:1.65;}
+    .carousel-card-arrow{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--gold);margin-top:1.5rem;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;}
+    .carousel-card:hover .carousel-card-arrow{opacity:1;transform:translateY(0);}
+    .carousel-controls{display:flex;align-items:center;gap:1rem;padding:1.5rem 3rem 3rem;}
+    .carousel-btn{width:44px;height:44px;border-radius:50%;background:var(--bg-mid);border:.5px solid var(--border);color:var(--text-main);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s,color .2s;}
+    .carousel-btn:hover{background:var(--bg-card);border-color:var(--gold);color:var(--gold);}
+    .carousel-dots{display:flex;gap:6px;}
+    .carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--border);cursor:pointer;transition:background .2s,width .3s;}
+    .carousel-dot.active{background:var(--gold);width:18px;border-radius:3px;}
+
+    /* ══════════════════════════════
+       POR QUÉ ELEGIRNOS
+    ══════════════════════════════ */
+    .why-section{padding:5rem 3rem;background:var(--bg-mid);}
+    .why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;margin-top:2.5rem;}
+    .why-card{background:#1a1920;border-radius:16px;padding:1.75rem;border:.5px solid rgba(255,255,255,.07);transition:transform .25s,box-shadow .25s,border-color .25s;}
+    .why-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.3);border-color:rgba(45,212,191,.2);}
+    .why-icon{width:44px;height:44px;border-radius:10px;background:var(--teal-dim);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--teal);margin-bottom:1.2rem;}
+    .why-card h4{font-size:15px;font-weight:600;color:var(--text-main);margin-bottom:.5rem;}
+    .why-card p{font-size:13px;color:var(--text-muted);line-height:1.65;}
+
+    /* ══════════════════════════════
+       CON QUIÉN TRABAJAMOS
+    ══════════════════════════════ */
+    .clients-section{
+      padding:6rem 3rem;
+      background:linear-gradient(135deg,#8B2B6B 0%,#A63580 40%,#6B1F52 100%);
+      position:relative;overflow:hidden;
+    }
+    .clients-section::before{
+      content:'';position:absolute;inset:0;
+      background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,.03) 3px,rgba(255,255,255,.03) 4px);
+      pointer-events:none;
+    }
+    .clients-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+
+    .clients-text .eyebrow{color:rgba(255,255,255,.6);}
+    .clients-text .section-title{font-size:42px;color:#fff;margin-bottom:1rem;}
+    .clients-text p{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;max-width:420px;}
+
+    .clients-categories{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.1);border-radius:14px;overflow:hidden;}
+    .client-cat{
+      background:rgba(255,255,255,.06);
+      padding:1.5rem 2rem;
+      display:flex;align-items:center;gap:1.25rem;
+      transition:background .25s,transform .25s;
+      cursor:default;
+    }
+    .client-cat:hover{background:rgba(255,255,255,.12);transform:translateX(4px);}
+    .client-cat-icon{width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0;}
+    .client-cat h4{font-size:16px;font-weight:600;color:#fff;margin-bottom:3px;}
+    .client-cat p{font-size:12px;color:rgba(255,255,255,.55);line-height:1.5;}
+
+    /* Logos de clientes */
+    .client-logos-row{
+      margin-top:3rem;padding-top:2.5rem;
+      border-top:.5px solid rgba(255,255,255,.15);
+      display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+      position:relative;z-index:1;
+    }
+    .client-logos-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);white-space:nowrap;}
+    .client-logos-list{display:flex;gap:2.5rem;flex-wrap:wrap;align-items:center;}
+    .client-logo-pill{font-size:13px;font-weight:500;color:rgba(255,255,255,.35);letter-spacing:.5px;text-transform:uppercase;}
+
+    /* ══════════════════════════════
+       CTA FINAL
+    ══════════════════════════════ */
+    .cta-section{padding:7rem 3rem;text-align:center;border-top:.5px solid var(--border);background:var(--bg-base);}
+    .cta-section h2{font-family:var(--font-display);font-size:44px;font-weight:800;letter-spacing:-1.2px;margin-bottom:1rem;}
+    .cta-section p{font-size:16px;color:var(--text-muted);margin-bottom:2.5rem;}
+
+    /* ══════════════════════════════
+       SCROLL REVEAL
+    ══════════════════════════════ */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);}
+    .reveal.visible{opacity:1;transform:none;}
+    .reveal-stagger>*{opacity:0;transform:translateY(24px);transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1);}
+    .reveal-stagger.visible>*:nth-child(1){opacity:1;transform:none;transition-delay:0s;}
+    .reveal-stagger.visible>*:nth-child(2){opacity:1;transform:none;transition-delay:.08s;}
+    .reveal-stagger.visible>*:nth-child(3){opacity:1;transform:none;transition-delay:.16s;}
+    .reveal-stagger.visible>*:nth-child(4){opacity:1;transform:none;transition-delay:.24s;}
+    .reveal-stagger.visible>*:nth-child(5){opacity:1;transform:none;transition-delay:.32s;}
+    .reveal-stagger.visible>*:nth-child(6){opacity:1;transform:none;transition-delay:.40s;}
+
+    @media(max-width:768px){
+      .nav{padding:1rem 1.25rem;}
+      .nav-links{display:none;}
+      .hero-brand{font-size:clamp(60px,18vw,100px);letter-spacing:-3px;}
+      .hero-stats{gap:2rem;}
+      .wheel-container{width:320px;height:320px;}
+      .wheel-item{width:68px;height:68px;}
+      .wheel-item i{font-size:16px;}
+      .wheel-item span{font-size:8px;}
+      .wheel-center{width:100px;height:100px;}
+      .clients-inner{grid-template-columns:1fr;gap:2.5rem;}
+      .carousel-card{width:280px;min-height:380px;}
+      .why-section,.cta-section{padding:3rem 1.25rem;}
+      .cta-section h2{font-size:30px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV inyectado por nav.js -->
+
+  <!-- ══════ HERO ══════ -->
+  <section class="hero" id="hero">
+    <div class="hero-photo" id="heroPhoto"></div>
+    <div class="hero-slide-panel"></div>
+
+    <div class="hero-content">
+      <span class="hero-eyebrow">EQUIPO PROFESIONAL PARA EVENTOS CORPORATIVOS Y PUBLICITARIOS</span>
+      <h1 class="hero-brand">GLITCH</h1>
+      <p class="hero-sub-title">Renta de equipo de audio, iluminación, pantallas LED, streaming y más...</p>
+      <div class="hero-btns">
+        <a href="pages/contacto.html" class="btn-primary">Cotizar mi evento</a>
+        <a href="#servicios" class="btn-secondary">Ver servicios</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">+500</div><div class="stat-label">Eventos realizados</div></div>
+        <div><div class="stat-num">12</div><div class="stat-label">Años de experiencia</div></div>
+        <div><div class="stat-num">+80</div><div class="stat-label">Clientes satisfechos</div></div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══════ RUEDA DE SERVICIOS ══════ -->
+  <section class="services-section" id="servicios">
+    <div class="wheel-bg" id="wheelBg"></div>
+    <div class="wheel-bg-overlay" id="wheelBgOverlay"></div>
+
+    <span class="eyebrow reveal" style="position:relative;z-index:2;">Servicios</span>
+    <h2 class="section-title reveal" style="position:relative;z-index:2;">Todo lo que tu evento necesita</h2>
+    <p class="section-sub reveal" style="position:relative;z-index:2;">Soluciones de producción integral para eventos corporativos y espectáculos de cualquier escala.</p>
+
+    <div class="wheel-container" id="wheel">
+      <svg class="wheel-svg" id="wheelSvg" viewBox="0 0 560 560"></svg>
+      <div class="wheel-center" id="wheelCenter">
+        <i class="ti ti-star"></i>
+        <span class="wheel-center-label">Selecciona<br>un servicio</span>
+      </div>
+
+      <div class="wheel-item" data-img="img/audio.jpg"       data-icon="ti ti-volume"       data-label="Audio profesional"       data-href="pages/audio.html"><i class="ti ti-volume"></i><span>Audio</span></div>
+      <div class="wheel-item" data-img="img/video.jpg"       data-icon="ti ti-video"        data-label="Video y proyección"      data-href="pages/video.html"><i class="ti ti-video"></i><span>Video</span></div>
+      <div class="wheel-item" data-img="img/iluminacion.jpg" data-icon="ti ti-bulb"         data-label="Iluminación"             data-href="pages/iluminacion.html"><i class="ti ti-bulb"></i><span>Iluminación</span></div>
+      <div class="wheel-item" data-img="img/led.jpg"         data-icon="ti ti-device-tv"    data-label="Pantallas y banners LED" data-href="pages/led.html"><i class="ti ti-device-tv"></i><span>LED</span></div>
+      <div class="wheel-item" data-img="img/traduccion.jpg"  data-icon="ti ti-headphones"   data-label="Traducción simultánea"   data-href="pages/traduccion.html"><i class="ti ti-headphones"></i><span>Traducción</span></div>
+      <div class="wheel-item" data-img="img/hibridos.jpg"    data-icon="ti ti-radio"        data-label="Eventos híbridos"        data-href="pages/contacto.html"><i class="ti ti-radio"></i><span>Híbridos</span></div>
+      <div class="wheel-item" data-img="img/silent.jpg"      data-icon="ti ti-headset"      data-label="Silent Party / Audífonos LED" data-href="pages/contacto.html"><i class="ti ti-headset"></i><span>Silent Party</span></div>
+      <div class="wheel-item" data-img="img/streaming.jpg"   data-icon="ti ti-broadcast"    data-label="Streaming"               data-href="pages/contacto.html"><i class="ti ti-broadcast"></i><span>Streaming</span></div>
+      <div class="wheel-item" data-img="img/podcast.jpg"     data-icon="ti ti-microphone-2" data-label="Equipo para Podcast"     data-href="pages/contacto.html"><i class="ti ti-microphone-2"></i><span>Podcast</span></div>
+    </div>
+
+    <p style="font-size:13px;color:var(--text-dim);margin-top:2.5rem;position:relative;z-index:2;">
+      <a href="pages/contacto.html" style="color:var(--gold);text-decoration:none;">Contactar para más servicios →</a>
+    </p>
+  </section>
+
+  <!-- ══════ NUESTROS SERVICIOS (carrusel) ══════ -->
+  <section class="carousel-section">
+    <div class="carousel-header reveal">
+      <span class="eyebrow">Catálogo</span>
+      <h2 class="section-title">Nuestros Servicios</h2>
+    </div>
+    <div class="carousel-track-wrapper">
+      <div class="carousel-track" id="carouselTrack">
+        <a href="pages/audio.html" class="carousel-card" style="--card-img:url('img/audio.jpg')">
+          <div class="carousel-card-num">01</div><div class="carousel-card-icon"><i class="ti ti-volume"></i></div>
+          <div class="carousel-card-body"><h3>Audio profesional</h3><p>Sistemas line array, consolas digitales de 32 a 96 canales, micrófonos inalámbricos y monitoreo en escenario.</p></div>
+          <div class="carousel-card-arrow">Ver equipo <i class="ti ti-arrow-right"></i></div>
+        </a>
+        <a href="pages/iluminacion.html" class="carousel-card" style="--card-img:url('img/iluminacion.jpg')">
+          <div class="carousel-card-num">02</div><div class="carousel-card-icon"><i class="ti ti-bulb"></i></div>
+          <div class="carousel-card-body"><h3>Iluminación</h3><p>Moving heads, LED wash, gobos, piso y arquitectónica. Diseño y operación para crear la atmósfera perfecta en cualquier recinto.</p></div>
+          <div class="carousel-card-arrow">Ver equipo <i class="ti ti-arrow-right"></i></div>
+        </a>
+        <a href="pages/led.html" class="carousel-card" style="--card-img:url('img/led.jpg')">
+          <div class="carousel-card-num">03</div><div class="carousel-card-icon"><i class="ti ti-device-tv"></i></div>
+          <div class="carousel-card-body"><h3>Pantallas y banners LED</h3><p>Muros LED indoor y outdoor de alta resolución, configurables en cualquier dimensión para escenarios, backdrops y branding.</p></div>
+          <div class="carousel-card-arrow">Ver equipo <i class="ti ti-arrow-right"></i></div>
+        </a>
+        <a href="pages/traduccion.html" class="carousel-card" style="--card-img:url('img/traduccion.jpg')">
+          <div class="carousel-card-num">04</div><div class="carousel-card-icon"><i class="ti ti-headphones"></i></div>
+          <div class="carousel-card-body"><h3>Traducción simultánea</h3><p>Cabinas ISO 4043, receptores inalámbricos y técnicos especializados para congresos y eventos internacionales multilingüe.</p></div>
+          <div class="carousel-card-arrow">Ver equipo <i class="ti ti-arrow-right"></i></div>
+        </a>
+        <a href="pages/contacto.html" class="carousel-card" style="--card-img:url('img/silent.jpg')">
+          <div class="carousel-card-num">05</div><div class="carousel-card-icon"><i class="ti ti-headset"></i></div>
+          <div class="carousel-card-body"><h3>Audífonos LED / Silent Party</h3><p>Renta de audífonos LED inalámbricos para eventos silenciosos. Hasta 3 canales de audio simultáneos con control de volumen individual.</p></div>
+          <div class="carousel-card-arrow">Solicitar info <i class="ti ti-arrow-right"></i></div>
+        </a>
+        <a href="pages/contacto.html" class="carousel-card" style="--card-img:url('img/streaming.jpg')">
+          <div class="carousel-card-num">06</div><div class="carousel-card-icon"><i class="ti ti-broadcast"></i></div>
+          <div class="carousel-card-body"><h3>Streaming y eventos híbridos</h3><p>Producción completa para transmisión en vivo a YouTube, Zoom, Vimeo y plataformas privadas con baja latencia.</p></div>
+          <div class="carousel-card-arrow">Solicitar info <i class="ti ti-arrow-right"></i></div>
+        </a>
+        <a href="pages/contacto.html" class="carousel-card" style="--card-img:url('img/podcast.jpg')">
+          <div class="carousel-card-num">07</div><div class="carousel-card-icon"><i class="ti ti-microphone-2"></i></div>
+          <div class="carousel-card-body"><h3>Equipo para Podcast</h3><p>Sets completos para grabación y transmisión: micrófonos, interfaces, monitores, luces y cámaras listos para usar.</p></div>
+          <div class="carousel-card-arrow">Solicitar info <i class="ti ti-arrow-right"></i></div>
+        </a>
+        <a href="pages/contacto.html" class="carousel-card" style="--card-img:url('img/hibridos.jpg')">
+          <div class="carousel-card-num">08</div><div class="carousel-card-icon"><i class="ti ti-cpu"></i></div>
+          <div class="carousel-card-body"><h3>Servidor de ARENA</h3><p>Resolume Arena configurado y operado por nuestro equipo para producción de visuales en tiempo real y contenido generativo.</p></div>
+          <div class="carousel-card-arrow">Solicitar info <i class="ti ti-arrow-right"></i></div>
+        </a>
+        <a href="pages/contacto.html" class="carousel-card" style="--card-img:url('img/video.jpg')">
+          <div class="carousel-card-num">09</div><div class="carousel-card-icon"><i class="ti ti-gift"></i></div>
+          <div class="carousel-card-body"><h3>Artículos publicitarios</h3><p>Banners, lonas, stands, señalética y material impreso personalizado para tu evento corporativo.</p></div>
+          <div class="carousel-card-arrow">Solicitar info <i class="ti ti-arrow-right"></i></div>
+        </a>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="prevBtn"><i class="ti ti-arrow-left"></i></button>
+      <button class="carousel-btn" id="nextBtn"><i class="ti ti-arrow-right"></i></button>
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+  </section>
+
+  <!-- ══════ POR QUÉ ELEGIRNOS ══════ -->
+  <section class="why-section">
+    <span class="eyebrow reveal">Por qué elegirnos</span>
+    <h2 class="section-title reveal">Producción sin contratiempos</h2>
+    <div class="why-grid reveal-stagger">
+      <div class="why-card"><div class="why-icon"><i class="ti ti-star"></i></div><h4>Equipo de última generación</h4><p>Renovamos constantemente nuestro inventario para ofrecerte la tecnología más reciente del mercado.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="ti ti-certificate"></i></div><h4>Personal certificado</h4><p>Nuestros técnicos tienen experiencia en los eventos más exigentes del país y del extranjero.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="ti ti-user-check"></i></div><h4>Atención personalizada</h4><p>Un productor asignado a tu evento desde la cotización hasta el desmontaje.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="ti ti-clock-24"></i></div><h4>Respaldo en sitio 24/7</h4><p>Soporte técnico permanente durante todo el evento. Si algo falla, lo resolvemos en minutos.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="ti ti-receipt"></i></div><h4>Cotización transparente</h4><p>Sin sorpresas. Te entregamos un desglose detallado de todo el equipo y personal incluido.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="ti ti-map-pin"></i></div><h4>Cobertura nacional</h4><p>Operamos en toda la República Mexicana. Coordinamos logística y transporte de equipo a cualquier destino.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════ CON QUIÉN TRABAJAMOS ══════ -->
+  <section class="clients-section">
+    <div class="clients-inner reveal">
+      <div class="clients-text">
+        <span class="eyebrow">Nuestros clientes</span>
+        <h2 class="section-title">Con quién trabajamos</h2>
+        <p>Llevamos años equipando eventos de alto nivel para organismos públicos, instituciones de salud y congresos especializados en toda la República Mexicana.</p>
+      </div>
+      <div class="clients-categories">
+        <div class="client-cat">
+          <div class="client-cat-icon"><i class="ti ti-building-bank"></i></div>
+          <div>
+            <h4>Instituciones gubernamentales</h4>
+            <p>Secretarías, dependencias federales y estatales, organismos públicos</p>
+          </div>
+        </div>
+        <div class="client-cat">
+          <div class="client-cat-icon"><i class="ti ti-microscope"></i></div>
+          <div>
+            <h4>Laboratorios médicos</h4>
+            <p>Presentaciones de productos, lanzamientos farmacéuticos, eventos internos</p>
+          </div>
+        </div>
+        <div class="client-cat">
+          <div class="client-cat-icon"><i class="ti ti-stethoscope"></i></div>
+          <div>
+            <h4>Congresos de medicina y farmacología</h4>
+            <p>Audio, traducción simultánea y producción completa para congresos científicos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="client-logos-row reveal">
+      <p class="client-logos-label">Clientes</p>
+      <div class="client-logos-list">
+        <span class="client-logo-pill">Empresa A</span>
+        <span class="client-logo-pill">Grupo XYZ</span>
+        <span class="client-logo-pill">Corp. MX</span>
+        <span class="client-logo-pill">Industrias B</span>
+        <span class="client-logo-pill">Global S.A.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ CTA FINAL ══════ -->
+  <section class="cta-section reveal">
+    <h2>¿Tienes un evento en mente?</h2>
+    <p>Cuéntanos qué necesitas y te enviamos una cotización en menos de 24 horas.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="pages/contacto.html" class="btn-primary" style="font-size:16px;padding:1rem 2.5rem;">Solicitar cotización</a>
+      <a href="pages/contacto.html" class="btn-secondary" style="font-size:16px;padding:1rem 2.5rem;">Llamar ahora</a>
+    </div>
+  </section>
+
+  <script src="nav.js"></script>
+  <script src="glitch-transition.js"></script>
+  <script>
+  /* ═══ PARALLAX HERO ═══ */
+  (function(){
+    const photo = document.getElementById('heroPhoto');
+    function onScroll(){
+      const y = window.scrollY;
+      // La foto se mueve más lento que el scroll (efecto parallax)
+      photo.style.transform = `scale(1.08) translateY(${y * 0.3}px)`;
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+  })();
+
+  /* ═══ RUEDA — líneas continuas + dots ═══ */
+  (function(){
+    const W=560,H=560,cx=W/2,cy=H/2,R=200;
+    const wheel  = document.getElementById('wheel');
+    const svg    = document.getElementById('wheelSvg');
+    const center = document.getElementById('wheelCenter');
+    const bg     = document.getElementById('wheelBg');
+    const bgOvl  = document.getElementById('wheelBgOverlay');
+    const items  = Array.from(wheel.querySelectorAll('.wheel-item'));
+    const cIcon  = center.querySelector('i');
+    const cLabel = center.querySelector('.wheel-center-label');
+    let leaveTimer = null, bgTimer = null;
+
+    items.forEach((item,i)=>{
+      const angle=(i/items.length)*2*Math.PI-Math.PI/2;
+      const ix=cx+R*Math.cos(angle), iy=cy+R*Math.sin(angle);
+      item.style.left=(ix-52)+'px'; item.style.top=(iy-52)+'px';
+
+      // Línea base — siempre visible, continua
+      const base=document.createElementNS('http://www.w3.org/2000/svg','line');
+      base.setAttribute('x1',cx);base.setAttribute('y1',cy);
+      base.setAttribute('x2',ix);base.setAttribute('y2',iy);
+      base.setAttribute('class','wheel-line-base');
+      svg.appendChild(base);
+
+      // Línea activa — se muestra al hover
+      const active=document.createElementNS('http://www.w3.org/2000/svg','line');
+      active.setAttribute('x1',cx);active.setAttribute('y1',cy);
+      active.setAttribute('x2',ix);active.setAttribute('y2',iy);
+      active.setAttribute('class','wheel-line-active');
+      active.setAttribute('id','line-act-'+i);
+      svg.appendChild(active);
+
+      // Path para animateMotion
+      const pathEl=document.createElementNS('http://www.w3.org/2000/svg','path');
+      pathEl.setAttribute('id','path-'+i);
+      pathEl.setAttribute('d',`M ${cx} ${cy} L ${ix} ${iy}`);
+      pathEl.setAttribute('fill','none');
+      svg.appendChild(pathEl);
+
+      // 3 dots viajeros
+      for(let d=0;d<3;d++){
+        const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');
+        dot.setAttribute('r','3');dot.setAttribute('class','wheel-dot');
+        dot.setAttribute('id','dot-'+i+'-'+d);
+        const anim=document.createElementNS('http://www.w3.org/2000/svg','animateMotion');
+        anim.setAttribute('dur','1.1s');anim.setAttribute('repeatCount','indefinite');
+        anim.setAttribute('begin',(d*0.37)+'s');
+        const mpath=document.createElementNS('http://www.w3.org/2000/svg','mpath');
+        mpath.setAttribute('href','#path-'+i);
+        anim.appendChild(mpath);dot.appendChild(anim);svg.appendChild(dot);
+      }
+
+      // Entrada orbital
+      item.style.opacity='0';item.style.transform='scale(0.4)';
+      setTimeout(()=>{
+        item.style.transition='opacity .4s,transform .35s cubic-bezier(.4,0,.2,1),border-color .3s,background .3s,box-shadow .3s';
+        item.style.opacity='1';item.style.transform='scale(1)';
+      },200+i*55);
+
+      item.addEventListener('mouseenter',()=>{clearTimeout(leaveTimer);activate(item,i);});
+      item.addEventListener('mouseleave',()=>{leaveTimer=setTimeout(deactivate,350);});
+      item.addEventListener('click',()=>{if(item.dataset.href)window.location.href=item.dataset.href;});
+    });
+
+    center.addEventListener('mouseenter',()=>clearTimeout(leaveTimer));
+
+    function activate(item,idx){
+      deactivateAll();
+      item.classList.add('active');
+      const ln=document.getElementById('line-act-'+idx);
+      if(ln)ln.classList.add('on');
+      for(let d=0;d<3;d++){
+        const dot=document.getElementById('dot-'+idx+'-'+d);
+        if(dot)dot.classList.add('active');
+      }
+      cIcon.className=item.dataset.icon;
+      cLabel.innerHTML=item.dataset.label;
+
+      const img=item.dataset.img;
+      if(img){
+        clearTimeout(bgTimer);
+        bg.style.transition='opacity .2s ease,transform .5s ease';
+        bg.style.opacity='0';bg.style.transform='scale(1.06)';
+        bgTimer=setTimeout(()=>{
+          bg.style.backgroundImage=`url('${img}')`;
+          bg.style.transition='opacity .4s ease,transform .55s ease';
+          bg.style.opacity='1';bg.style.transform='scale(1)';
+          bgOvl.style.opacity='1';
+        },180);
+        bgOvl.style.opacity='1';
+      }
+    }
+
+    function deactivate(){
+      deactivateAll();
+      bg.style.transition='opacity .5s ease';bg.style.opacity='0';
+      bgOvl.style.opacity='0';
+      cIcon.className='ti ti-star';
+      cLabel.innerHTML='Selecciona<br>un servicio';
+    }
+
+    function deactivateAll(){
+      items.forEach((el,i)=>{
+        el.classList.remove('active');
+        const ln=document.getElementById('line-act-'+i);
+        if(ln)ln.classList.remove('on');
+        for(let d=0;d<3;d++){
+          const dot=document.getElementById('dot-'+i+'-'+d);
+          if(dot)dot.classList.remove('active');
+        }
+      });
+    }
+  })();
+
+  /* ═══ CARRUSEL INFINITO ═══ */
+  (function(){
+    const track=document.getElementById('carouselTrack');
+    const prev=document.getElementById('prevBtn');
+    const next=document.getElementById('nextBtn');
+    const dotsEl=document.getElementById('carouselDots');
+    const origCards=Array.from(track.querySelectorAll('.carousel-card'));
+    const total=origCards.length;
+    const visible=()=>window.innerWidth<768?1:window.innerWidth<1100?2:3;
+    origCards.forEach(c=>track.appendChild(c.cloneNode(true)));
+    origCards.forEach(c=>{const cl=c.cloneNode(true);track.insertBefore(cl,track.firstChild);});
+    let idx=total,isAnimating=false;
+    for(let i=0;i<total;i++){
+      const d=document.createElement('div');
+      d.className='carousel-dot'+(i===0?' active':'');
+      d.addEventListener('click',()=>goTo(total+i));
+      dotsEl.appendChild(d);
+    }
+    function cardW(){return track.querySelectorAll('.carousel-card')[0].offsetWidth+0;}
+    function setPos(animate){
+      track.style.transition=animate?'transform .45s cubic-bezier(.4,0,.2,1)':'none';
+      track.style.transform=`translateX(-${idx*cardW()}px)`;
+      const di=(idx-total+total)%total;
+      Array.from(dotsEl.children).forEach((d,i)=>d.classList.toggle('active',i===di));
+    }
+    requestAnimationFrame(()=>setPos(false));
+    function goTo(newIdx){
+      if(isAnimating)return;isAnimating=true;idx=newIdx;setPos(true);
+      setTimeout(()=>{
+        if(idx>=total*2){idx=total+(idx-total*2);setPos(false);}
+        if(idx<total){idx=total+idx;setPos(false);}
+        isAnimating=false;
+      },460);
+    }
+    prev.addEventListener('click',()=>goTo(idx-1));
+    next.addEventListener('click',()=>goTo(idx+1));
+    let sx=0;
+    track.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+    track.addEventListener('touchend',e=>{const d=sx-e.changedTouches[0].clientX;if(Math.abs(d)>40)goTo(d>0?idx+1:idx-1);});
+    window.addEventListener('resize',()=>setPos(false));
+  })();
+
+  /* ═══ SCROLL REVEAL ═══ */
+  (function(){
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+    },{threshold:.1});
+    document.querySelectorAll('.reveal,.reveal-stagger').forEach(el=>obs.observe(el));
+  })();
+  </script>
+</body>
+</html>
