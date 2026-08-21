@@ -27,7 +27,7 @@
       display: flex; align-items: center; justify-content: center;
       pointer-events: none;
       opacity: 0;
-      transition: opacity 0.05s;
+      transition: opacity 0.18s ease-out;
     }
     #glitch-overlay.active { opacity: 1; pointer-events: all; }
 
@@ -47,11 +47,11 @@
     /* Glitch logo centrado */
     .go-logo {
       position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%) scale(0.92);
       opacity: 0;
       z-index: 2;
     }
-    .go-logo img { height: 60px; width: auto; filter: brightness(10); }
+    .go-logo img { height: 64px; width: auto; }
 
     /* Líneas de scanline */
     #glitch-overlay::before {
@@ -80,39 +80,40 @@
 
     // Paso 1: barras entran desde izquierda (staggered)
     setTimeout(() => {
-      b1.style.transition = 'transform 0.12s cubic-bezier(.4,0,.2,1)';
+      b1.style.transition = 'transform 0.34s cubic-bezier(.4,0,.2,1)';
       b1.style.transform = 'scaleX(1)';
-    }, t); t += 60;
+    }, t); t += 120;
 
     setTimeout(() => {
-      b3.style.transition = 'transform 0.12s cubic-bezier(.4,0,.2,1)';
+      b3.style.transition = 'transform 0.34s cubic-bezier(.4,0,.2,1)';
       b3.style.transform = 'scaleX(1)';
-    }, t); t += 60;
+    }, t); t += 120;
 
     setTimeout(() => {
-      b2.style.transition = 'transform 0.10s cubic-bezier(.4,0,.2,1)';
+      b2.style.transition = 'transform 0.30s cubic-bezier(.4,0,.2,1)';
       b2.style.transform = 'scaleX(1)';
-    }, t); t += 80;
+    }, t); t += 150;
 
-    // Paso 2: glitch - barras se desplazan brevemente
+    // Paso 2: glitch - barras se desplazan brevemente + logo aparece con fade suave
     setTimeout(() => {
-      b1.style.transition = 'transform 0.04s';
-      b1.style.transform = 'scaleX(1) translateX(-8px)';
-      b3.style.transition = 'transform 0.04s';
-      b3.style.transform = 'scaleX(1) translateX(8px)';
-      logo.style.transition = 'opacity 0.1s';
+      b1.style.transition = 'transform 0.1s ease-out';
+      b1.style.transform = 'scaleX(1) translateX(-6px)';
+      b3.style.transition = 'transform 0.1s ease-out';
+      b3.style.transform = 'scaleX(1) translateX(6px)';
+      logo.style.transition = 'opacity 0.42s ease-out, transform 0.42s ease-out';
       logo.style.opacity = '1';
-    }, t); t += 60;
+      logo.style.transform = 'translate(-50%, -50%) scale(1)';
+    }, t); t += 130;
 
     setTimeout(() => {
-      b1.style.transform = 'scaleX(1) translateX(5px)';
-      b3.style.transform = 'scaleX(1) translateX(-5px)';
-    }, t); t += 40;
+      b1.style.transform = 'scaleX(1) translateX(3px)';
+      b3.style.transform = 'scaleX(1) translateX(-3px)';
+    }, t); t += 90;
 
     setTimeout(() => {
       b1.style.transform = 'scaleX(1) translateX(0)';
       b3.style.transform = 'scaleX(1) translateX(0)';
-    }, t); t += 80;
+    }, t); t += 280;
 
     // Paso 3: navegar
     setTimeout(() => {

@@ -3,14 +3,14 @@
   const isInPages   = window.location.pathname.includes('/pages/');
   const ctaHref     = isInPages ? 'contacto.html'  : 'pages/contacto.html';
   const homeHref    = isInPages ? '../index.html'   : 'index.html';
-  const logoSrc     = isInPages ? '../logo.jpeg'    : 'logo.jpeg';
+  const logoSrc     = isInPages ? '../glitch-logo.png'    : 'glitch-logo.png';
 
   const links = [
     { href: 'pages/audio.html',      label: 'Audio' },
     { href: 'pages/video.html',      label: 'Video' },
     { href: 'pages/iluminacion.html',label: 'Iluminación' },
     { href: 'pages/led.html',        label: 'Pantalla LED' },
-    { href: 'pages/traduccion.html', label: 'Traducción' },
+    { href: 'pages/traduccion.html', label: 'Traducción simultánea' },
     { href: 'pages/contacto.html',   label: 'Contacto' },
   ];
 
@@ -30,7 +30,7 @@
         <img src="${logoSrc}" alt="Glitch" class="nav-logo-img" />
       </a>
       <ul class="nav-links">${navLinksHTML}</ul>
-      <a href="${ctaHref}" class="nav-cta">Solicitar cotización</a>
+      <a href="${ctaHref}" class="nav-cta"><span class="nav-cta-shine"></span><span class="nav-cta-label">Solicitar cotización</span></a>
     </nav>`;
 
   const footerHTML = `
@@ -38,17 +38,16 @@
       <div class="footer-logo-wrap">
         <img src="${logoSrc}" alt="Glitch" class="footer-logo-img" />
       </div>
-      <p class="footer-copy">© 2025 Glitch · Ciudad de México</p>
+      <p class="footer-copy">
+        <span>2026 | GLITCH | CDMX |</span>
+        <span class="footer-nerd">${pixelOctopus}<span>Proudly nerd</span></span>
+      </p>
       <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
         <div class="footer-links">
           <a href="#">Aviso de privacidad</a>
           <a href="#">Términos</a>
           <a href="${ctaHref}">Contacto</a>
         </div>
-        <span class="footer-nerd">
-          ${pixelOctopus}
-          <span>Proudly nerd</span>
-        </span>
       </div>
     </footer>`;
 

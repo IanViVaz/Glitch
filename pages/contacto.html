@@ -106,6 +106,24 @@
       line-height: 1.6;
     }
 
+    .contact-info {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      padding: 2rem;
+    }
+    .contact-info::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(rgba(10,10,15,0.94),rgba(10,10,15,0.94)),
+        url('../img/icons-pattern.jpg');
+      background-size: auto, 650px;
+      background-position: center, center;
+      background-repeat: no-repeat, repeat;
+      z-index: -1;
+    }
+
     @media (max-width: 768px) {
       .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
     }
@@ -113,19 +131,13 @@
 </head>
 <body>
 
-  <div class="page-hero">
-    <span class="eyebrow">Contacto</span>
-    <h1>Solicita tu cotización</h1>
-    <p>Cuéntanos los detalles de tu evento y te enviamos una propuesta personalizada en menos de 24 horas.</p>
-  </div>
-
-  <section class="section" style="background: var(--bg-base);">
+  <section class="section" style="background: var(--bg-base); padding-top: 3.5rem;">
     <div class="contact-layout">
 
       <!-- INFO DE CONTACTO -->
       <div class="contact-info">
         <h2>Hablemos de tu evento</h2>
-        <p>Estamos disponibles para resolver tus dudas, hacer un sitio de inspección o simplemente platicar sobre las posibilidades de tu producción.</p>
+        <p>Escríbenos los detalles de tu evento y deja que nuestro pulproductor se encargue del resto.</p>
 
         <div class="contact-detail">
           <div class="contact-detail-icon"><i class="ti ti-phone"></i></div>
@@ -139,7 +151,7 @@
           <div class="contact-detail-icon"><i class="ti ti-mail"></i></div>
           <div class="contact-detail-text">
             <strong>Correo</strong>
-            <span>contacto@proeventav.com</span>
+            <span>contacto@glitch.com.mx</span>
           </div>
         </div>
 
@@ -239,6 +251,17 @@
           <p>Gracias por contactarnos. Revisaremos los detalles de tu evento y te enviaremos una cotización personalizada en menos de 24 horas hábiles.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ══════ POR QUÉ ELEGIRNOS ══════ -->
+  <section class="section why-section" style="background: var(--bg-mid);">
+    <span class="eyebrow">Por qué elegirnos</span>
+    <h2 class="section-title">Producción sin contratiempos</h2>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon"><i class="ti ti-certificate"></i></div><h4>Personal certificado</h4><p>Nuestros técnicos cuentan con experiencia y se encuentran en constante capacitación.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="ti ti-clock-24"></i></div><h4>Respaldo en sitio</h4><p>Soporte técnico permanente durante todo el evento. Si algo falla, lo resolvemos en minutos.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="ti ti-map-pin"></i></div><h4>Cobertura nacional</h4><p>Operamos en toda la República Mexicana. Coordinamos logística y transporte de equipo a cualquier destino.</p></div>
     </div>
   </section>
 
