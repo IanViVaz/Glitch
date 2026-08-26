@@ -51,7 +51,7 @@
       opacity: 0;
       z-index: 2;
     }
-    .go-logo img { height: 64px; width: auto; }
+    .go-logo img { height: 108px; width: auto; }
 
     /* Líneas de scanline */
     #glitch-overlay::before {

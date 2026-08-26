@@ -22,7 +22,7 @@
 
   // Pulpo pixeleado — imagen real
   const pulpoSrc = isInPages ? '../img/pulpo-pixel.jpeg' : 'img/pulpo-pixel.jpeg';
-  const pixelOctopus = `<img src="${pulpoSrc}" alt="pulpo" style="height:28px;width:auto;vertical-align:middle;opacity:0.55;filter:brightness(10);image-rendering:pixelated;" />`;
+  const pixelOctopus = `<img src="${pulpoSrc}" alt="pulpo" style="height:44px;width:auto;vertical-align:middle;opacity:0.75;filter:brightness(10);image-rendering:pixelated;" />`;
 
   const navHTML = `
     <nav class="nav">
@@ -40,7 +40,7 @@
       </div>
       <p class="footer-copy">
         <span>2026 | GLITCH | CDMX |</span>
-        <span class="footer-nerd">${pixelOctopus}<span>Proudly nerd</span></span>
+        <span class="footer-nerd">${pixelOctopus}<span>Proudly nerdy</span></span>
       </p>
       <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
         <div class="footer-links">

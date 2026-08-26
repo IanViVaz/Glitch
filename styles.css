@@ -13,6 +13,8 @@
 :root {
   --gold:       #2DD4BF;
   --gold-dim:   rgba(45,212,191,0.12);
+  --glitch-pink:     #FF009B;
+  --glitch-pink-dim: rgba(255,0,155,0.14);
   --bg-base:    #0a0a0f;
   --bg-mid:     #0f0e12;
   --bg-card:    #141218;
@@ -261,9 +263,43 @@ img { display: block; width: 100%; object-fit: cover; }
 
 /* ── Page hero (páginas interiores) ── */
 .page-hero {
+  position: relative;
+  overflow: hidden;
   padding: 5rem 3rem 4rem;
   border-bottom: 0.5px solid var(--border);
   background: linear-gradient(180deg, #0f0e12 0%, var(--bg-base) 100%);
+}
+
+.page-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero-photo {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 55%;
+  background-image: var(--hero-img);
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(1) contrast(1.05);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.45) 22%, black 55%);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.45) 22%, black 55%);
+  z-index: 0;
+}
+
+.page-hero-photo::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--gold);
+  mix-blend-mode: color;
+  opacity: 0.5;
+}
+
+.page-hero-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,15,0.15) 0%, rgba(10,10,15,0.55) 100%);
 }
 
 .page-hero h1 {
@@ -375,6 +411,7 @@ img { display: block; width: 100%; object-fit: cover; }
 .footer {
   padding: 2rem 3rem;
   border-top: 0.5px solid var(--border);
+  background: var(--bg-base);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -541,6 +578,23 @@ img { display: block; width: 100%; object-fit: cover; }
 .faq-section {
   padding: 5rem 3rem;
   background: var(--bg-mid);
+  position: relative;
+  overflow: hidden;
+}
+.faq-section::before {
+  content: '';
+  position: absolute; inset: -2px;
+  background:
+    linear-gradient(rgba(15,14,18,0.93), rgba(15,14,18,0.93)),
+    url('img/icons-pattern.jpg');
+  background-size: auto, 900px;
+  background-position: top center, top center;
+  background-repeat: no-repeat, repeat;
+  z-index: 0;
+}
+.faq-section > * {
+  position: relative;
+  z-index: 1;
 }
 
 .faq-list {
@@ -602,6 +656,7 @@ img { display: block; width: 100%; object-fit: cover; }
   .nav-links { display: none; }
   .section { padding: 3rem 1.25rem; }
   .page-hero { padding: 3rem 1.25rem 2.5rem; }
+  .page-hero-photo { display: none; }
   .page-hero h1 { font-size: 32px; }
   .section-title { font-size: 26px; }
   .footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
