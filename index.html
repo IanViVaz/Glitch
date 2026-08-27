@@ -275,11 +275,12 @@
     .cta-section::before{
       content:'';position:absolute;inset:-2px;
       background:
-        linear-gradient(rgba(10,10,15,0.93),rgba(10,10,15,0.93)),
+        linear-gradient(rgba(10,10,15,0.9),rgba(10,10,15,0.9)),
         url('img/icons-pattern.jpg');
       background-size:auto,900px;
       background-position:top center,top center;
       background-repeat:no-repeat,repeat;
+      background-attachment:scroll,fixed;
       z-index:0;
     }
     .cta-section h2{position:relative;z-index:1;font-family:var(--font-display);font-size:44px;font-weight:800;letter-spacing:-1.2px;margin-bottom:1rem;}
@@ -685,24 +686,26 @@
     prev.addEventListener('click',()=>goTo(idx-1));
     next.addEventListener('click',()=>goTo(idx+1));
 
-    // Auto-avance al pasar el cursor sobre la última tarjeta visible
+    // Auto-avance al pasar el cursor sobre la última tarjeta visible (por posición fija del viewport, no por elemento)
+    const viewport=track.closest('.carousel-track-wrapper')||track.parentElement;
     let hoverAdvanceTimer=null;
-    function isLastVisibleCard(card){
-      const cards=Array.from(track.querySelectorAll('.carousel-card'));
-      return cards.indexOf(card)===idx+visible()-1;
+    function inLastSlot(clientX){
+      const r=viewport.getBoundingClientRect();
+      const slotW=r.width/visible();
+      return clientX>=r.right-slotW;
     }
-    track.addEventListener('mouseover',e=>{
-      const card=e.target.closest('.carousel-card');
-      if(!card||!isLastVisibleCard(card)||hoverAdvanceTimer)return;
+    function startAutoAdvance(){
+      if(hoverAdvanceTimer)return;
       hoverAdvanceTimer=setInterval(()=>goTo(idx+1),1600);
+    }
+    function stopAutoAdvance(){
+      if(!hoverAdvanceTimer)return;
+      clearInterval(hoverAdvanceTimer);hoverAdvanceTimer=null;
+    }
+    viewport.addEventListener('mousemove',e=>{
+      if(inLastSlot(e.clientX))startAutoAdvance();else stopAutoAdvance();
     });
-    track.addEventListener('mouseout',e=>{
-      const card=e.target.closest('.carousel-card');
-      if(!card)return;
-      const stillInside=e.relatedTarget&&e.relatedTarget.closest&&e.relatedTarget.closest('.carousel-card')===card;
-      if(stillInside)return;
-      if(hoverAdvanceTimer){clearInterval(hoverAdvanceTimer);hoverAdvanceTimer=null;}
-    });
+    viewport.addEventListener('mouseleave',stopAutoAdvance);
 
     let sx=0;
     track.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});

@@ -108,20 +108,27 @@
 
     .contact-info {
       position: relative;
-      overflow: hidden;
-      border-radius: 16px;
-      padding: 2rem;
+      padding: 2rem 0;
     }
-    .contact-info::before {
+
+    .contact-section-bg {
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-section-bg::before {
       content: '';
-      position: absolute; inset: 0;
+      position: absolute; inset: -2px;
       background:
-        linear-gradient(rgba(10,10,15,0.94),rgba(10,10,15,0.94)),
+        linear-gradient(rgba(10,10,15,0.9),rgba(10,10,15,0.9)),
         url('../img/icons-pattern.jpg');
       background-size: auto, 650px;
-      background-position: center, center;
+      background-position: top center, top center;
       background-repeat: no-repeat, repeat;
-      z-index: -1;
+      z-index: 0;
+    }
+    .contact-section-bg > .contact-layout {
+      position: relative;
+      z-index: 1;
     }
 
     @media (max-width: 768px) {
@@ -131,7 +138,7 @@
 </head>
 <body>
 
-  <section class="section" style="background: var(--bg-base); padding-top: 3.5rem;">
+  <section class="section contact-section-bg" style="padding-top: 3.5rem;">
     <div class="contact-layout">
 
       <!-- INFO DE CONTACTO -->

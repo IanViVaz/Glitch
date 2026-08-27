@@ -5,6 +5,8 @@
 (function(){
 
   // Crear el overlay de glitch
+  const isInPages = window.location.pathname.includes('/pages/');
+  const blackLogoSrc = isInPages ? '../glitch-logo-black.png' : 'glitch-logo-black.png';
   const overlay = document.createElement('div');
   overlay.id = 'glitch-overlay';
   overlay.innerHTML = `
@@ -13,7 +15,7 @@
       <div class="go-bar b2"></div>
       <div class="go-bar b3"></div>
       <div class="go-logo">
-        <img src="${document.querySelector('.nav-logo-img') ? document.querySelector('.nav-logo-img').src : 'logo.jpeg'}" alt="Glitch"/>
+        <img src="${blackLogoSrc}" alt="Glitch"/>
       </div>
     </div>
   `;
@@ -50,8 +52,12 @@
       transform: translate(-50%, -50%) scale(0.92);
       opacity: 0;
       z-index: 2;
+      background: #f0ede8;
+      border-radius: 20px;
+      padding: 18px 22px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
     }
-    .go-logo img { height: 108px; width: auto; }
+    .go-logo img { height: 108px; width: auto; display: block; }
 
     /* Líneas de scanline */
     #glitch-overlay::before {

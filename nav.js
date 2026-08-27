@@ -3,7 +3,7 @@
   const isInPages   = window.location.pathname.includes('/pages/');
   const ctaHref     = isInPages ? 'contacto.html'  : 'pages/contacto.html';
   const homeHref    = isInPages ? '../index.html'   : 'index.html';
-  const logoSrc     = isInPages ? '../glitch-logo.png'    : 'glitch-logo.png';
+  const logoSrc     = isInPages ? '../glitch-logo-white.png' : 'glitch-logo-white.png';
 
   const links = [
     { href: 'pages/audio.html',      label: 'Audio' },
@@ -22,7 +22,7 @@
 
   // Pulpo pixeleado — imagen real
   const pulpoSrc = isInPages ? '../img/pulpo-pixel.jpeg' : 'img/pulpo-pixel.jpeg';
-  const pixelOctopus = `<img src="${pulpoSrc}" alt="pulpo" style="height:44px;width:auto;vertical-align:middle;opacity:0.75;filter:brightness(10);image-rendering:pixelated;" />`;
+  const pixelOctopus = `<img src="${pulpoSrc}" alt="pulpo" style="height:44px;width:auto;vertical-align:middle;opacity:0.85;mix-blend-mode:screen;image-rendering:pixelated;" />`;
 
   const navHTML = `
     <nav class="nav">

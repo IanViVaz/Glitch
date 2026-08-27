@@ -2,7 +2,7 @@
    ProEvent AV — Estilos globales
    ============================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap');
 
 *, *::before, *::after {
   margin: 0;
@@ -524,7 +524,7 @@ img { display: block; width: 100%; object-fit: cover; }
 
 /* ── Por qué elegirnos ── */
 .why-section {
-  padding: 4rem 0 1rem;
+  padding: 4rem 3rem 3rem;
 }
 
 .why-grid {
@@ -585,11 +585,12 @@ img { display: block; width: 100%; object-fit: cover; }
   content: '';
   position: absolute; inset: -2px;
   background:
-    linear-gradient(rgba(15,14,18,0.93), rgba(15,14,18,0.93)),
+    linear-gradient(rgba(10,10,15,0.9), rgba(10,10,15,0.9)),
     url('img/icons-pattern.jpg');
   background-size: auto, 900px;
   background-position: top center, top center;
   background-repeat: no-repeat, repeat;
+  background-attachment: scroll, fixed;
   z-index: 0;
 }
 .faq-section > * {
@@ -668,11 +669,12 @@ img { display: block; width: 100%; object-fit: cover; }
 .logo-link {
   display: flex;
   align-items: center;
+  gap: 10px;
   text-decoration: none;
 }
 
 .nav-logo-img {
-  height: 54px;
+  height: 52px;
   width: auto;
   object-fit: contain;
   transition: opacity 0.2s;
@@ -686,14 +688,14 @@ img { display: block; width: 100%; object-fit: cover; }
 }
 
 .footer-logo-img {
-  height: 42px;
+  height: 34px;
   width: auto;
   object-fit: contain;
-  opacity: 0.5;
+  opacity: 0.55;
   transition: opacity 0.2s;
 }
 
-.footer-logo-img:hover { opacity: 0.7; }
+.footer-logo-wrap:hover .footer-logo-img { opacity: 0.75; }
 
 /* ── Proudly nerd footer ── */
 .footer-nerd {
