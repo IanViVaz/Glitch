@@ -181,7 +181,7 @@
     .carousel-section{background:var(--bg-base);overflow:hidden;border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);}
     .carousel-header{padding:4rem 3rem 2rem;}
     .carousel-track-wrapper{overflow:hidden;}
-    .carousel-track{display:flex;gap:0;width:max-content;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+    .carousel-track{display:flex;gap:0;width:max-content;transition:transform .32s cubic-bezier(.4,0,.2,1);}
 
     .carousel-card{width:340px;height:560px;background:var(--bg-mid);border-right:.5px solid var(--border);padding:1.85rem 1.75rem;display:flex;flex-direction:column;cursor:pointer;text-decoration:none;color:inherit;flex-shrink:0;position:relative;overflow:hidden;}
     .carousel-card::before{content:'';position:absolute;inset:0;background-image:var(--card-img);background-size:cover;background-position:center;opacity:0;transform:scale(1.08);transition:opacity .45s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1);z-index:0;}
@@ -269,23 +269,30 @@
     ══════════════════════════════ */
     .cta-section{
       padding:7rem 3rem;text-align:center;border-top:.5px solid var(--border);
+      position:relative;
+    }
+    .cta-section h2{position:relative;z-index:1;font-family:var(--font-display);font-size:44px;font-weight:800;letter-spacing:-1.2px;margin-bottom:1rem;}
+    .cta-section p{position:relative;z-index:1;font-size:16px;color:var(--text-muted);margin-bottom:2.5rem;}
+    .cta-section > div{position:relative;z-index:1;}
+
+    /* Fondo de íconos compartido, continuo entre CTA y FAQ (sin background-attachment:fixed para evitar el salto al hacer scroll) */
+    .icons-bg-group{
       position:relative;overflow:hidden;
       background:var(--bg-base);
     }
-    .cta-section::before{
-      content:'';position:absolute;inset:-2px;
+    .icons-bg-group::before{
+      content:'';position:absolute;inset:0;
       background:
         linear-gradient(rgba(10,10,15,0.9),rgba(10,10,15,0.9)),
         url('img/icons-pattern.jpg');
       background-size:auto,900px;
       background-position:top center,top center;
       background-repeat:no-repeat,repeat;
-      background-attachment:scroll,fixed;
       z-index:0;
     }
-    .cta-section h2{position:relative;z-index:1;font-family:var(--font-display);font-size:44px;font-weight:800;letter-spacing:-1.2px;margin-bottom:1rem;}
-    .cta-section p{position:relative;z-index:1;font-size:16px;color:var(--text-muted);margin-bottom:2.5rem;}
-    .cta-section > div{position:relative;z-index:1;}
+    .icons-bg-group .cta-section,
+    .icons-bg-group .faq-section{position:relative;z-index:1;background:transparent;}
+    .icons-bg-group .faq-section::before{display:none;}
 
     /* ══════════════════════════════
        SCROLL REVEAL
@@ -490,35 +497,37 @@
     </div>
   </section>
 
-  <!-- ══════ CTA FINAL ══════ -->
-  <section class="cta-section reveal">
-    <h2>¿Tienes un evento en mente?</h2>
-    <p>Cuéntanos qué necesitas y te enviamos una cotización en menos de 24 horas.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="pages/contacto.html" class="btn-primary" style="font-size:16px;padding:1rem 2.5rem;">Solicitar cotización</a>
-      <a href="pages/contacto.html" class="btn-secondary" style="font-size:16px;padding:1rem 2.5rem;">Llamar ahora</a>
-    </div>
-  </section>
+  <!-- ══════ CTA FINAL + FAQ (fondo de íconos compartido y continuo) ══════ -->
+  <div class="icons-bg-group">
+    <section class="cta-section reveal">
+      <h2>¿Tienes un evento en mente?</h2>
+      <p>Cuéntanos qué necesitas y te enviamos una cotización en menos de 24 horas.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="pages/contacto.html" class="btn-primary" style="font-size:16px;padding:1rem 2.5rem;">Solicitar cotización</a>
+        <a href="pages/contacto.html" class="btn-secondary" style="font-size:16px;padding:1rem 2.5rem;">Llamar ahora</a>
+      </div>
+    </section>
 
-  <!-- ══════ FAQ ══════ -->
-  <section class="faq-section reveal">
-    <span class="eyebrow">Preguntas frecuentes</span>
-    <h2 class="section-title">¿Tienes dudas?</h2>
-    <div class="faq-list">
-      <details class="faq-item">
-        <summary>¿Tengo que saber de cables para rentar equipo audiovisual en CDMX?</summary>
-        <p>Para nada. Tu único trabajo es decirnos si tu evento es en Santa Fe, Polanco, el Centro Histórico o en qué parte de la ciudad, y a qué hora empieza. Como tu Event Partner, en GLiTCH llegamos, montamos, conectamos todo y nos aseguramos de que nada explote. Te dejamos el sistema listo para que tú solo disfrutes (o mejor aún, nos dejes operar a nosotros).</p>
-      </details>
-      <details class="faq-item">
-        <summary>¿Por qué contratar una productora de eventos en Ciudad de México y no solo rentar unas bocinas sueltas?</summary>
-        <p>Porque no solo rentas fierros: rentas paz mental. Nuestro servicio incluye equipo profesional de alta gama que no te deja tirado a la mitad de tu congreso, el flete lidiando con el tráfico de la ciudad, horas de montaje técnico y un equipo de operadores expertos listos para salvar el día si el presentador decide cambiar el guion a última hora.</p>
-      </details>
-      <details class="faq-item">
-        <summary>¿Con cuánto tiempo debo reservar el equipo audiovisual para mi evento?</summary>
-        <p>Entre más pronto, mejor. Si agendas tu evento en CDMX con semanas de anticipación, aseguramos la disponibilidad exacta del equipo. Si nos llamas tres horas antes porque otro proveedor de audio te canceló... haremos magia si tenemos inventario libre, pero te va a costar un microinfarto y una carrera contra el reloj.</p>
-      </details>
-    </div>
-  </section>
+    <!-- FAQ -->
+    <section class="faq-section reveal">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2 class="section-title">¿Tienes dudas?</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Tengo que saber de cables para rentar equipo audiovisual en CDMX?</summary>
+          <p>Para nada. Tu único trabajo es decirnos si tu evento es en Santa Fe, Polanco, el Centro Histórico o en qué parte de la ciudad, y a qué hora empieza. Como tu Event Partner, en GLiTCH llegamos, montamos, conectamos todo y nos aseguramos de que nada explote. Te dejamos el sistema listo para que tú solo disfrutes (o mejor aún, nos dejes operar a nosotros).</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Por qué contratar una productora de eventos en Ciudad de México y no solo rentar unas bocinas sueltas?</summary>
+          <p>Porque no solo rentas fierros: rentas paz mental. Nuestro servicio incluye equipo profesional de alta gama que no te deja tirado a la mitad de tu congreso, el flete lidiando con el tráfico de la ciudad, horas de montaje técnico y un equipo de operadores expertos listos para salvar el día si el presentador decide cambiar el guion a última hora.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Con cuánto tiempo debo reservar el equipo audiovisual para mi evento?</summary>
+          <p>Entre más pronto, mejor. Si agendas tu evento en CDMX con semanas de anticipación, aseguramos la disponibilidad exacta del equipo. Si nos llamas tres horas antes porque otro proveedor de audio te canceló... haremos magia si tenemos inventario libre, pero te va a costar un microinfarto y una carrera contra el reloj.</p>
+        </details>
+      </div>
+    </section>
+  </div>
 
   <script src="nav.js"></script>
   <script src="glitch-transition.js"></script>
@@ -696,7 +705,7 @@
     }
     function startAutoAdvance(){
       if(hoverAdvanceTimer)return;
-      hoverAdvanceTimer=setInterval(()=>goTo(idx+1),1600);
+      hoverAdvanceTimer=setInterval(()=>goTo(idx+1),1150);
     }
     function stopAutoAdvance(){
       if(!hoverAdvanceTimer)return;

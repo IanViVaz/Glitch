@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestro Propósito — Glitch</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <style>
+    .proposito-section {
+      padding: 6rem 3rem 7rem;
+      background: var(--bg-base);
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+    }
+    .proposito-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .proposito-inner .eyebrow { color: var(--gold); }
+    .proposito-inner h1 {
+      font-family: var(--font-display, 'Syne', sans-serif);
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text-main);
+      margin: 0.8rem 0 1.5rem;
+      line-height: 1.15;
+    }
+    .proposito-inner h1 em {
+      color: var(--gold);
+      font-style: normal;
+    }
+    .proposito-inner p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .proposito-inner p strong {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+    .proposito-tagline {
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--text-main);
+      border-left: 3px solid var(--gold);
+      padding-left: 1.2rem;
+      margin-top: 2.5rem;
+    }
+    .proposito-video-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 0.5px solid var(--border);
+      background: #000;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .proposito-video-wrap video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    @media (max-width: 900px) {
+      .proposito-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .proposito-video-wrap { order: -1; max-width: 420px; margin: 0 auto; }
+    }
+    @media (max-width: 768px) {
+      .proposito-section { padding: 3.5rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="proposito-section">
+    <div class="proposito-layout">
+      <div class="proposito-inner">
+        <span class="eyebrow">Propósito</span>
+        <h1>Nuestro Propósito: <em>Que el único glitch en tu evento sea nuestro nombre.</em></h1>
+        <p>Existimos para domar las pantallas, los imprevistos de última hora y la tensión del set a base de equipo de gama alta, experiencia inquebrantable, el mejor team de técnicos y una obsesión enfermiza por la perfección. Creemos que la verdadera magia no se presume: <strong>se siente y es invisible.</strong></p>
+        <p class="proposito-tagline">El 100% es para amateurs; nosotros damos el millón.</p>
+      </div>
+      <div class="proposito-video-wrap">
+        <video autoplay loop muted playsinline poster="../img/pulpo-loop-poster.jpg">
+          <source src="../img/pulpo-loop.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <script src="../nav.js"></script>
+  <script src="../glitch-transition.js"></script>
+</body>
+</html>
