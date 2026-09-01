@@ -27,7 +27,7 @@
 
   // Pulpo pixeleado — imagen real
   const pulpoSrc = isInPages ? '../img/pulpo-pixel.jpeg' : 'img/pulpo-pixel.jpeg';
-  const pixelOctopus = `<img src="${pulpoSrc}" alt="pulpo" style="height:44px;width:auto;vertical-align:middle;opacity:0.85;mix-blend-mode:screen;image-rendering:pixelated;" />`;
+  const pixelOctopus = `<img src="${pulpoSrc}" alt="pulpo" style="height:100px;width:auto;vertical-align:middle;opacity:0.9;mix-blend-mode:screen;image-rendering:pixelated;" />`;
 
   const navHTML = `
     <nav class="nav">
@@ -49,9 +49,12 @@
         <img src="${logoSrc}" alt="Glitch" class="footer-logo-img" />
       </a>
       <p class="footer-copy">
-        <span>2026 | GLITCH | CDMX |</span>
-        <span class="footer-nerd">${pixelOctopus}<span>Proudly nerdy</span></span>
+        <span>2026 | GLITCH | CDMX | +52 55 1234 5678</span>
       </p>
+      <a href="${isInPages ? 'proposito.html' : 'pages/proposito.html'}" class="footer-nerd" style="text-decoration:none;">
+        ${pixelOctopus}
+        <span>Proudly nerdy</span>
+      </a>
       <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
         <div class="footer-links">
           <a href="#">Aviso de privacidad</a>
