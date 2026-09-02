@@ -5,28 +5,32 @@
   const homeHref    = isInPages ? '../index.html'   : 'index.html';
   const logoSrc     = isInPages ? '../glitch-logo-white.png' : 'glitch-logo-white.png';
 
+  const p = isInPages ? '' : 'pages/';
+
   const links = [
-    { href: 'pages/audio.html',      label: 'Audio' },
-    { href: 'pages/video.html',      label: 'Video' },
-    { href: 'pages/iluminacion.html',label: 'Iluminación' },
-    { href: 'pages/led.html',        label: 'Pantalla LED' },
-    { href: 'pages/traduccion.html', label: 'Traducción simultánea' },
-    { href: 'pages/contacto.html',   label: 'Contacto', extraClass: 'nav-link-contact' },
+    { href: p + 'audio.html',          label: 'Audio' },
+    { href: p + 'video.html',          label: 'Video' },
+    { href: p + 'iluminacion.html',    label: 'Iluminación' },
+    { href: p + 'led.html',            label: 'Pantalla LED' },
+    { href: p + 'traduccion.html',     label: 'Traducción' },
+    { href: p + 'silent-party.html',   label: 'Silent Party' },
+    { href: p + 'streaming.html',      label: 'Streaming' },
+    { href: p + 'podcast.html',        label: 'Podcast' },
+    { href: p + 'articulos.html',      label: 'Artículos' },
+    { href: p + 'contacto.html',       label: 'Contacto', extraClass: 'nav-link-contact' },
   ];
 
   const navLinksHTML = links.map(link => {
-    const href     = isInPages ? link.href.replace('pages/', '') : link.href;
-    const classes  = [];
+    const classes = [];
     if (currentPage === link.href.split('/').pop()) classes.push('active');
     if (link.extraClass) classes.push(link.extraClass);
     const classAttr = classes.length ? ` class="${classes.join(' ')}"` : '';
-    return `<li><a href="${href}"${classAttr}>${link.label}</a></li>`;
+    return `<li><a href="${link.href}"${classAttr}>${link.label}</a></li>`;
   }).join('\n');
 
   const waHref = 'https://wa.me/message/NDOUJD4OSDRYI1';
 
-  // Pulpo pixeleado — imagen real
-  const pulpoSrc = isInPages ? '../img/pulpo-pixel.jpeg' : 'img/pulpo-pixel.jpeg';
+  const pulpoSrc     = isInPages ? '../img/pulpo-pixel.jpeg' : 'img/pulpo-pixel.jpeg';
   const pixelOctopus = `<img src="${pulpoSrc}" alt="pulpo" style="height:100px;width:auto;vertical-align:middle;opacity:0.9;mix-blend-mode:screen;image-rendering:pixelated;" />`;
 
   const navHTML = `
@@ -64,7 +68,6 @@
       </div>
     </footer>`;
 
-  // Inyectar nav solo si no existe ya uno
   if (!document.querySelector('nav.nav')) {
     document.body.insertAdjacentHTML('afterbegin', navHTML);
   }
