@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Producción Integral para Eventos en CDMX | GLiTCH</title>
+  <meta name="description" content="Audio, video, iluminación, traducción simultánea y streaming coordinados por un solo equipo técnico. Un proveedor, cero glitches. Cotiza hoy." />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <style>
+    .pi-hero {
+      padding: 6rem 3rem 5rem;
+      background: var(--bg-base);
+      border-bottom: 0.5px solid var(--border);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .pi-hero .eyebrow { margin-bottom: 1.2rem; }
+    .pi-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.02;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+    }
+    .pi-hero h1 em { font-style: normal; color: var(--gold); }
+    .pi-tagline {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 600px;
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+    }
+    .pi-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-bottom: 1.5rem; }
+    .pi-trust {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* Sección ventaja */
+    .pi-section { padding: 4rem 3rem; max-width: 900px; margin: 0 auto; }
+    .pi-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+    .pi-section p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 680px;
+      margin-bottom: 1rem;
+    }
+
+    /* Tabla de servicios */
+    .pi-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 14px;
+    }
+    .pi-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 0.75rem 1rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .pi-table td {
+      padding: 1rem 1rem;
+      border-bottom: 0.5px solid var(--border);
+      color: var(--text-main);
+      vertical-align: top;
+    }
+    .pi-table td:first-child {
+      font-weight: 600;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .pi-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* Pasos */
+    .pi-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .pi-step {
+      background: var(--bg-mid);
+      border: 0.5px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+    }
+    .pi-step-num {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 800;
+      color: rgba(45,212,191,0.15);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .pi-step h4 { font-size: 15px; font-weight: 600; color: var(--text-main); margin-bottom: 0.4rem; }
+    .pi-step p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* Tags de tipo de evento */
+    .pi-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.5rem 0; }
+    .pi-tag {
+      font-size: 12px;
+      color: var(--gold);
+      border: 0.5px solid rgba(45,212,191,0.3);
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: rgba(45,212,191,0.06);
+    }
+
+    /* Diferenciadores */
+    .pi-diffs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .pi-diff {
+      background: var(--bg-mid);
+      padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .pi-diff-icon {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: var(--gold-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--gold); flex-shrink: 0;
+    }
+    .pi-diff h4 { font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 0.3rem; }
+    .pi-diff p { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; }
+
+    /* FAQ */
+    .faq-section { padding: 4rem 3rem; max-width: 900px; margin: 0 auto; }
+    .faq-section h2 {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 700;
+      color: var(--text-main); margin-bottom: 1.5rem;
+    }
+    .faq-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .faq-item {
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--bg-mid);
+    }
+    .faq-item summary {
+      padding: 1rem 1.25rem;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-main);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item summary::after {
+      content: '+';
+      font-size: 18px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-item p {
+      padding: 0 1.25rem 1rem;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* CTA final */
+    .pi-cta {
+      padding: 5rem 3rem;
+      text-align: center;
+      border-top: 0.5px solid var(--border);
+      background: var(--bg-base);
+    }
+    .pi-cta h2 {
+      font-family: var(--font-display);
+      font-size: 36px; font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+    }
+    .pi-cta p { font-size: 15px; color: var(--text-muted); margin-bottom: 2rem; }
+
+    @media(max-width: 768px) {
+      .pi-hero, .pi-section, .faq-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .pi-diffs { grid-template-columns: 1fr; }
+      .pi-cta { padding: 3rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div style="background:var(--bg-base);padding-top:2rem;">
+    <div class="pi-hero">
+      <span class="eyebrow">Producción Integral</span>
+      <h1>Un evento.<br>Un equipo.<br><em>Cero glitches.</em></h1>
+      <p class="pi-tagline">Deja de coordinar cinco proveedores distintos — con GLiTCH, audio, video, iluminación, traducción simultánea y streaming llegan coordinados desde el inicio.</p>
+      <div class="pi-cta-row">
+        <a href="contacto.html" class="btn-primary">Cotiza tu evento — respuesta directa por WhatsApp</a>
+      </div>
+      <p class="pi-trust">Detrás de GLiTCH: el mismo equipo técnico con más de 20 años produciendo eventos corporativos, médicos y de gobierno.</p>
+    </div>
+  </div>
+
+  <!-- POR QUÉ INTEGRAL -->
+  <section class="pi-section" style="background:var(--bg-mid);max-width:100%;padding:4rem 0;">
+    <div style="max-width:900px;margin:0 auto;padding:0 3rem;">
+      <span class="eyebrow">El problema</span>
+      <h2>Coordinar todo por separado es donde se cae un evento</h2>
+      <p>Audio por un lado, video por otro, iluminación, traducción y streaming cada uno con su propio proveedor. Cinco cotizaciones, cinco visitas técnicas, cinco números a los que llamar si algo no cuadra el día del evento — y nadie te garantiza que todos lleguen coordinados entre sí.</p>
+      <p>Con Producción Integral, GLiTCH pone audio, video, iluminación, traducción simultánea y streaming bajo un solo contrato y un solo equipo técnico. Un punto de contacto desde que pides la cotización hasta que se desmonta el último cable.</p>
+
+      <!-- Tabla -->
+      <h3 style="font-size:16px;font-weight:600;color:var(--text-main);margin:2rem 0 0.5rem;">Tu Producción Integral incluye:</h3>
+      <table class="pi-table">
+        <thead>
+          <tr>
+            <th>Servicio</th>
+            <th>Qué cubre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Audio</td><td>Sonido profesional para sala, pódium y transmisión en vivo</td></tr>
+          <tr><td>Video</td><td>Pantallas LED, cámaras, switcher de producción y grabación del evento</td></tr>
+          <tr><td>Iluminación</td><td>Iluminación escénica y ambiental para el pódium, la sala y la transmisión</td></tr>
+          <tr><td>Traducción simultánea</td><td>Cabinas, receptores e intérpretes especializados por tema (médico, técnico, legal)</td></tr>
+          <tr><td>Streaming</td><td>Transmisión en vivo multiplataforma con producción profesional</td></tr>
+        </tbody>
+      </table>
+
+      <div class="pi-tags">
+        <span class="pi-tag">Silent party — audífonos inalámbricos</span>
+        <span class="pi-tag">Podcast — grabación y transmisión dentro de tu evento</span>
+        <span class="pi-tag">Artículos publicitarios — merchandising personalizado</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 PASOS -->
+  <section class="pi-section">
+    <span class="eyebrow">Cómo funciona</span>
+    <h2>Tres pasos, un solo equipo</h2>
+    <div class="pi-steps">
+      <div class="pi-step">
+        <div class="pi-step-num">01</div>
+        <h4>Cuéntanos tu evento</h4>
+        <p>Fecha, sede, aforo, idiomas y qué necesitas. En una llamada o por WhatsApp.</p>
+      </div>
+      <div class="pi-step">
+        <div class="pi-step-num">02</div>
+        <h4>Te armamos una propuesta integral</h4>
+        <p>Los servicios que elijas, coordinados entre sí, con un solo precio claro desde el inicio.</p>
+      </div>
+      <div class="pi-step">
+        <div class="pi-step-num">03</div>
+        <h4>Un equipo monta, opera y desmonta</h4>
+        <p>El mismo técnico que armó la propuesta es quien está el día del evento. Sin sorpresas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUIÉN -->
+  <section class="pi-section" style="background:var(--bg-mid);max-width:100%;padding:4rem 0;">
+    <div style="max-width:900px;margin:0 auto;padding:0 3rem;">
+      <span class="eyebrow">Pensado para</span>
+      <h2>Eventos donde nada puede fallar</h2>
+      <p>Congresos y conferencias con ponentes internacionales, eventos médicos y científicos, lanzamientos de producto, y producciones para casas productoras que necesitan varios servicios técnicos trabajando como un solo sistema.</p>
+
+      <div class="pi-diffs">
+        <div class="pi-diff">
+          <div class="pi-diff-icon"><i class="ti ti-building"></i></div>
+          <div>
+            <h4>Un solo punto de contacto</h4>
+            <p>No cinco proveedores que coordinar tú mismo.</p>
+          </div>
+        </div>
+        <div class="pi-diff">
+          <div class="pi-diff-icon"><i class="ti ti-certificate"></i></div>
+          <div>
+            <h4>Equipo técnico con experiencia real</h4>
+            <p>El mismo que ha operado eventos grandes durante más de dos décadas.</p>
+          </div>
+        </div>
+        <div class="pi-diff">
+          <div class="pi-diff-icon"><i class="ti ti-receipt"></i></div>
+          <div>
+            <h4>Cotización clara desde el inicio</h4>
+            <p>Sabes exactamente qué incluye, sin sorpresas el día del evento.</p>
+          </div>
+        </div>
+        <div class="pi-diff">
+          <div class="pi-diff-icon"><i class="ti ti-map-pin"></i></div>
+          <div>
+            <h4>CDMX y toda la República</h4>
+            <p>GLiTCH viaja a cualquier estado. Coordinamos logística y transporte de equipo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <span class="eyebrow">Preguntas frecuentes</span>
+    <h2>¿Tienes dudas?</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>¿Qué incluye la Producción Integral?</summary>
+        <p>Audio, video, iluminación, traducción simultánea y streaming, coordinados por un solo equipo técnico.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Puedo agregar servicios como silent party, podcast o artículos publicitarios?</summary>
+        <p>Sí — son servicios adicionales que puedes sumar a tu Producción Integral según las necesidades de tu evento.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Con cuánta anticipación debo reservar?</summary>
+        <p>Recomendamos al menos un par de semanas antes, aunque podemos atender solicitudes urgentes.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Trabajan fuera de la Ciudad de México?</summary>
+        <p>Por supuesto. GLiTCH viaja a cualquier estado de la república.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿La cotización incluye instalación y operación el día del evento?</summary>
+        <p>Sí — el precio de tu Producción Integral incluye montaje, operación técnica durante el evento y desmontaje.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="pi-cta">
+    <h2>¿Tu próximo evento necesita Producción Integral?</h2>
+    <p>Cuéntanos los detalles y te enviamos una propuesta completa en menos de 24 horas.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="contacto.html" class="btn-primary" style="font-size:16px;padding:1rem 2.5rem;">Solicitar cotización</a>
+      <a href="https://wa.me/message/NDOUJD4OSDRYI1" target="_blank" class="btn-secondary" style="font-size:16px;padding:1rem 2.5rem;">Escribir por WhatsApp</a>
+    </div>
+  </section>
+
+  <script src="../nav.js"></script>
+  <script src="../glitch-transition.js"></script>
+</body>
+</html>
