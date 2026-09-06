@@ -3,11 +3,37 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Producción Audiovisual Integral para Eventos en CDMX | GLiTCH</title>
+  <title>GLiTCH | Producción Audiovisual Integral para Eventos en CDMX</title>
   <meta name="description" content="Renta de audio, video, traducción simultánea, pantallas LED y streaming para tu evento en CDMX y todo México. Un solo proveedor, un solo contacto. Cotiza hoy." />
+  <meta property="og:title" content="GLiTCH | Producción Audiovisual Integral para Eventos en CDMX" />
+  <meta property="og:description" content="Renta de audio, video, traducción simultánea, pantallas LED y streaming para tu evento en CDMX y todo México. Un solo proveedor, un solo contacto." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://glitch.com.mx/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GLiTCH | Producción Audiovisual Integral para Eventos en CDMX" />
+  <meta name="twitter:description" content="Renta de audio, video, traducción simultánea, pantallas LED y streaming para tu evento en CDMX y todo México." />
+  <link rel="canonical" href="https://glitch.com.mx/" />
+    <!-- AI agents: /llms.txt -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="manifest" href="site.webmanifest" />
   <link rel="stylesheet" href="styles.css"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/tabler-icons.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Google tag (gtag.js) — pendiente: pega tu ID de medición de GA4 / conversión de Google Ads y descomenta antes de lanzar campañas
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
   <style>
     :root{
       --font-display:'Syne',sans-serif;
@@ -37,7 +63,7 @@
     /* Foto de fondo con efecto parallax */
     .hero-photo{
       position:absolute;inset:0;z-index:0;
-      background-image:url('img/hero-bg.jpg');
+      background-image:url('img/hero-bg.webp');
       background-size:cover;background-position:center top;
       filter:brightness(0.35) grayscale(0.3);
       transform:scale(1.08);
@@ -91,6 +117,9 @@
       margin-bottom:1rem;
       opacity:0;animation:fadeUp .6s .2s forwards;
       text-transform:uppercase;
+      max-width:100%;
+      overflow-wrap:break-word;
+      word-break:break-word;
     }
 
     .hero-sub-title{
@@ -160,10 +189,10 @@
     .wheel-center i{font-size:28px;color:var(--gold);margin-bottom:6px;transition:all .3s;}
     .wheel-center-label{font-size:11px;font-weight:500;color:var(--text-main);line-height:1.3;padding:0 12px;}
 
-    .wheel-item{position:absolute;width:104px;height:104px;border-radius:50%;background:var(--bg-card);border:.5px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;z-index:3;transition:transform .35s cubic-bezier(.4,0,.2,1),border-color .3s,background .3s,box-shadow .3s;}
+    .wheel-item{position:absolute;width:104px;height:104px;border-radius:50%;background:var(--bg-card);border:.5px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;z-index:3;transform:translate(-50%,-50%);transition:transform .35s cubic-bezier(.4,0,.2,1),border-color .3s,background .3s,box-shadow .3s;}
     .wheel-item i{font-size:22px;color:var(--text-muted);margin-bottom:5px;transition:color .3s,font-size .3s;}
     .wheel-item span{font-size:10px;color:var(--text-dim);line-height:1.3;padding:0 6px;transition:color .3s;}
-    .wheel-item:hover,.wheel-item.active{background:rgba(10,10,15,.9);border-color:var(--gold);transform:scale(1.18)!important;box-shadow:0 0 28px rgba(45,212,191,.25);}
+    .wheel-item:hover,.wheel-item.active{background:rgba(10,10,15,.9);border-color:var(--gold);transform:translate(-50%,-50%) scale(1.18)!important;box-shadow:0 0 28px rgba(45,212,191,.25);}
     .wheel-item:hover i,.wheel-item.active i{color:var(--gold);font-size:24px;}
     .wheel-item:hover span,.wheel-item.active span{color:var(--text-muted);}
 
@@ -285,7 +314,7 @@
       content:'';position:absolute;inset:0;
       background:
         linear-gradient(rgba(10,10,15,0.9),rgba(10,10,15,0.9)),
-        url('img/icons-pattern.jpg');
+        url('img/icons-pattern.webp');
       background-size:auto,900px;
       background-position:top center,top center;
       background-repeat:no-repeat,repeat;
@@ -308,12 +337,18 @@
     .reveal-stagger.visible>*:nth-child(5){opacity:1;transform:none;transition-delay:.32s;}
     .reveal-stagger.visible>*:nth-child(6){opacity:1;transform:none;transition-delay:.40s;}
 
+    /* Ajuste intermedio para tablets (entre escritorio y el breakpoint móvil de 768px) */
+    @media(max-width:1024px) and (min-width:769px){
+      .clients-inner{grid-template-columns:1fr;gap:2rem;}
+      .clients-categories{grid-template-columns:1fr;}
+    }
+
     @media(max-width:768px){
       .nav{padding:1rem 1.25rem;}
-      .nav-links{display:none;}
-      .hero-brand{font-size:clamp(60px,18vw,100px);letter-spacing:-3px;}
+      .hero-content{padding:1.5rem 1.25rem;}
+      .hero-brand{font-size:clamp(42px,15vw,90px);letter-spacing:-2px;}
       .hero-stats{gap:2rem;}
-      .wheel-container{width:320px;height:320px;}
+      .wheel-container{width:min(320px,88vw);height:min(320px,88vw);}
       .wheel-item{width:68px;height:68px;}
       .wheel-item i{font-size:16px;}
       .wheel-item span{font-size:8px;}
@@ -326,6 +361,83 @@
       .cta-section h2{font-size:30px;}
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué servicios ofrece GLiTCH para eventos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GLiTCH ofrece producción audiovisual integral para eventos: audio profesional, video y proyección, iluminación, pantallas LED, traducción simultánea, streaming y eventos híbridos, silent party con audífonos inalámbricos, equipo para podcast y artículos publicitarios promocionales."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿En qué ciudades opera GLiTCH?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GLiTCH tiene su base en Ciudad de México (CDMX) y opera a nivel nacional en toda la República Mexicana."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué incluye la Producción Integral de GLiTCH?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La Producción Integral incluye audio, video, iluminación, traducción simultánea y streaming coordinados por un solo equipo técnico bajo un solo contrato, eliminando la necesidad de coordinar múltiples proveedores."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿GLiTCH ofrece servicio white-label para agencias y casas productoras?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. GLiTCH opera bajo la marca del cliente de forma invisible — llevamos el equipo, hacemos el montaje y operamos la tecnología sin que se note que estuvimos ahí, para que la agencia o casa productora se lleve el crédito."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta rentar equipo audiovisual con GLiTCH?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Los precios varían según el tipo de evento, aforo, servicios requeridos y duración. GLiTCH ofrece cotización personalizada en menos de 24 horas a través de su formulario de contacto o por WhatsApp."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "GLiTCH",
+    "description": "Renta de equipo audiovisual para eventos en Ciudad de México y a nivel nacional — traducción simultánea, audio, pantallas LED, streaming e híbridos, silent party, podcast y artículos promocionales.",
+    "url": "https://glitch.com.mx",
+    "telephone": "+525619939997",
+    "email": "contacto@glitch.com.mx",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ciudad de México",
+      "addressCountry": "MX"
+    },
+    "areaServed": "México",
+    "serviceType": [
+      "Traducción simultánea",
+      "Audio profesional",
+      "Iluminación para eventos",
+      "Pantallas LED",
+      "Streaming",
+      "Silent party",
+      "Podcast corporativo",
+      "Producción audiovisual integral"
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -341,7 +453,7 @@
       <h1 class="hero-brand">GLITCH</h1>
       <p class="hero-desc">Audio, video, pantallas LED, traducción simultánea y streaming — coordinados por el mismo equipo técnico, desde el montaje hasta el cierre de tu evento. En Ciudad de México y a nivel nacional.</p>
       <div class="hero-btns">
-        <a href="pages/contacto.html" class="btn-primary">Cotizar mi evento</a>
+        <a href="pages/contacto" class="btn-primary">Cotizar mi evento</a>
         <a href="#servicios" class="btn-secondary">Ver servicios</a>
       </div>
     </div>
@@ -363,19 +475,19 @@
         <span class="wheel-center-label">Selecciona<br>un servicio</span>
       </div>
 
-      <div class="wheel-item" data-img="img/audio.jpg"       data-icon="ti ti-volume"       data-label="Audio profesional"       data-href="pages/audio.html"><i class="ti ti-volume"></i><span>Audio</span></div>
-      <div class="wheel-item" data-img="img/video.jpg"       data-icon="ti ti-video"        data-label="Video y proyección"      data-href="pages/video.html"><i class="ti ti-video"></i><span>Video</span></div>
-      <div class="wheel-item" data-img="img/iluminacion.jpg" data-icon="ti ti-bulb"         data-label="Iluminación"             data-href="pages/iluminacion.html"><i class="ti ti-bulb"></i><span>Iluminación</span></div>
-      <div class="wheel-item" data-img="img/led.jpg"         data-icon="ti ti-device-tv"    data-label="Pantallas y banners LED" data-href="pages/led.html"><i class="ti ti-device-tv"></i><span>LED</span></div>
-      <div class="wheel-item" data-img="img/traduccion.jpg"  data-icon="ti ti-headphones"   data-label="Traducción simultánea"   data-href="pages/traduccion.html"><i class="ti ti-headphones"></i><span>Traducción</span></div>
-      <div class="wheel-item" data-img="img/hibridos.jpg"    data-icon="ti ti-radio"        data-label="Eventos híbridos"        data-href="pages/contacto.html"><i class="ti ti-radio"></i><span>Eventos híbridos</span></div>
-      <div class="wheel-item" data-img="img/silent.jpg"      data-icon="ti ti-headset"      data-label="Silent Party / Audífonos LED" data-href="pages/silent-party.html"><i class="ti ti-headset"></i><span>Silent Party</span></div>
-      <div class="wheel-item" data-img="img/streaming.jpg"   data-icon="ti ti-broadcast"    data-label="Streaming"               data-href="pages/streaming.html"><i class="ti ti-broadcast"></i><span>Streaming</span></div>
-      <div class="wheel-item" data-img="img/podcast.jpg"     data-icon="ti ti-microphone-2" data-label="Equipo para Podcast"     data-href="pages/podcast.html"><i class="ti ti-microphone-2"></i><span>Podcast</span></div>
+      <div class="wheel-item" data-img="img/audio.webp"       data-icon="ti ti-volume"       data-label="Audio profesional"       data-href="pages/audio"><i class="ti ti-volume"></i><span>Audio</span></div>
+      <div class="wheel-item" data-img="img/video.webp"       data-icon="ti ti-video"        data-label="Video y proyección"      data-href="pages/video"><i class="ti ti-video"></i><span>Video</span></div>
+      <div class="wheel-item" data-img="img/iluminacion.webp" data-icon="ti ti-bulb"         data-label="Iluminación"             data-href="pages/iluminacion"><i class="ti ti-bulb"></i><span>Iluminación</span></div>
+      <div class="wheel-item" data-img="img/led.webp"         data-icon="ti ti-device-tv"    data-label="Pantallas y banners LED" data-href="pages/led"><i class="ti ti-device-tv"></i><span>LED</span></div>
+      <div class="wheel-item" data-img="img/traduccion.webp"  data-icon="ti ti-headphones"   data-label="Traducción simultánea"   data-href="pages/traduccion"><i class="ti ti-headphones"></i><span>Traducción</span></div>
+      <div class="wheel-item" data-img="img/hibridos.webp"    data-icon="ti ti-radio"        data-label="Eventos híbridos"        data-href="pages/contacto"><i class="ti ti-radio"></i><span>Eventos híbridos</span></div>
+      <div class="wheel-item" data-img="img/silent.webp"      data-icon="ti ti-headset"      data-label="Silent Party / Audífonos LED" data-href="pages/silent-party"><i class="ti ti-headset"></i><span>Silent Party</span></div>
+      <div class="wheel-item" data-img="img/streaming.webp"   data-icon="ti ti-broadcast"    data-label="Streaming"               data-href="pages/streaming"><i class="ti ti-broadcast"></i><span>Streaming</span></div>
+      <div class="wheel-item" data-img="img/podcast.webp"     data-icon="ti ti-microphone-2" data-label="Equipo para Podcast"     data-href="pages/podcast"><i class="ti ti-microphone-2"></i><span>Podcast</span></div>
     </div>
 
     <p style="font-size:13px;color:var(--text-dim);margin-top:2.5rem;position:relative;z-index:2;">
-      <a href="pages/contacto.html" style="color:var(--gold);text-decoration:none;">Contactar para más servicios →</a>
+      <a href="pages/contacto" style="color:var(--gold);text-decoration:none;">Contactar para más servicios →</a>
     </p>
   </section>
 
@@ -391,42 +503,42 @@
     </div>
     <div class="carousel-track-wrapper">
       <div class="carousel-track" id="carouselTrack">
-        <a href="pages/audio.html" class="carousel-card" style="--card-img:url('img/audio.jpg')">
+        <a href="pages/audio" class="carousel-card" style="--card-img:url('img/audio.webp')">
           <div class="carousel-card-num">01</div><div class="carousel-card-icon"><i class="ti ti-volume"></i></div>
           <div class="carousel-card-body"><h3>Equipo de Audio para Eventos</h3><p>Asegúrate de que tu mensaje se escuche fuerte y claro. Ofrecemos renta de equipo de audio profesional, micrófonos y bocinas para conferencias, congresos y producciones en la Ciudad de México y a nivel nacional. Sonido impecable, sin complicaciones y operado por expertos.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/iluminacion.html" class="carousel-card" style="--card-img:url('img/iluminacion.jpg')">
+        <a href="pages/iluminacion" class="carousel-card" style="--card-img:url('img/iluminacion.webp')">
           <div class="carousel-card-num">02</div><div class="carousel-card-icon"><i class="ti ti-bulb"></i></div>
           <div class="carousel-card-body"><h3>Iluminación para Producciones y Conferencias</h3><p>La luz correcta cambia por completo cómo se percibe tu evento. Brindamos renta y montaje de equipo de iluminación para conferencias, grabaciones y activaciones en todo México. Tu escenario, video o presentación lucirá impecable.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/led.html" class="carousel-card carousel-card--pink" style="--card-img:url('img/led.jpg')">
+        <a href="pages/led" class="carousel-card carousel-card--pink" style="--card-img:url('img/led.webp')">
           <div class="carousel-card-num">03</div><div class="carousel-card-icon"><i class="ti ti-device-tv"></i></div>
           <div class="carousel-card-body"><h3>Pantallas LED y Banners</h3><p>Haz que tu contenido sea el centro de atención. Ofrecemos renta de pantallas LED gigantes y banners digitales para eventos corporativos, congresos y exposiciones en la Ciudad de México y a nivel nacional. Instalación rápida, calidad de imagen impecable y soporte técnico durante todo tu evento.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/traduccion.html" class="carousel-card" style="--card-img:url('img/traduccion.jpg')">
+        <a href="pages/traduccion" class="carousel-card" style="--card-img:url('img/traduccion.webp')">
           <div class="carousel-card-num">04</div><div class="carousel-card-icon"><i class="ti ti-headphones"></i></div>
           <div class="carousel-card-body"><h3>Equipo de Traducción Simultánea</h3><p>Ofrecemos renta de cabinas, micrófonos y audífonos para traducción simultánea en eventos corporativos, congresos y reuniones internacionales en la Ciudad de México y a nivel nacional. Te damos todo el soporte técnico, cabinas y diademas necesarias para que tus conferencias y ponencias internacionales sean un éxito total.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/silent-party.html" class="carousel-card" style="--card-img:url('img/silent.jpg')">
+        <a href="pages/silent-party" class="carousel-card" style="--card-img:url('img/silent.webp')">
           <div class="carousel-card-num">05</div><div class="carousel-card-icon"><i class="ti ti-headset"></i></div>
           <div class="carousel-card-body"><h3>Audífonos LED: Silent Party y Conferencias Silenciosas</h3><p>Innova en tus eventos con una experiencia de audio inmersiva y sin ruido exterior. En GLITCH ofrecemos renta de audífonos inalámbricos para silent parties, conferencias silenciosas y activaciones en la Ciudad de México y a nivel nacional. Transmite múltiples canales de audio al mismo tiempo con una calidad impecable, ideal para eventos con restricciones de sonido o escenarios simultáneos.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/streaming.html" class="carousel-card" style="--card-img:url('img/streaming.jpg')">
+        <a href="pages/streaming" class="carousel-card" style="--card-img:url('img/streaming.webp')">
           <div class="carousel-card-num">06</div><div class="carousel-card-icon"><i class="ti ti-broadcast"></i></div>
           <div class="carousel-card-body"><h3>Producción de Streaming y Eventos Híbridos</h3><p>Conecta con tu audiencia en cualquier parte del mundo sin fallas de conexión. Ofrecemos el servicio completo de transmisión en vivo (streaming) y producción de eventos híbridos corporativos en la Ciudad de México y a nivel nacional. Nos encargamos de las cámaras, el audio y el switcheo en tiempo real para que tu congreso o webinar se vea profesional, tanto en el escenario como en la pantalla de cada asistente virtual.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/podcast.html" class="carousel-card" style="--card-img:url('img/podcast.jpg')">
+        <a href="pages/podcast" class="carousel-card" style="--card-img:url('img/podcast.webp')">
           <div class="carousel-card-num">07</div><div class="carousel-card-icon"><i class="ti ti-microphone-2"></i></div>
           <div class="carousel-card-body"><h3>Equipo y Producción para Podcast</h3><p>En GLITCH ofrecemos renta de equipo y producción completa para videopodcasts y podcasts corporativos en la Ciudad de México y a nivel nacional. Llevamos e instalamos micrófonos profesionales, cámaras, iluminación y consolas directamente a tu oficina o locación, dejando todo listo para grabar o transmitir en vivo con imagen y sonido impecables.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/contacto.html" class="carousel-card" style="--card-img:url('img/video.jpg')">
+        <a href="pages/contacto" class="carousel-card" style="--card-img:url('img/video.webp')">
           <div class="carousel-card-num">08</div><div class="carousel-card-icon"><i class="ti ti-gift"></i></div>
           <div class="carousel-card-body"><h3>Artículos Publicitarios y Promocionales para Eventos</h3><p>Haz que tu marca acompañe a tus asistentes incluso después de que termine la conferencia. En GLITCH complementamos tu producción con artículos publicitarios y promocionales. Desde lanyards y gafetes hasta regalos ejecutivos de alta calidad, nos aseguramos de que tu identidad visual destaque en cada detalle de tu evento o activación.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
@@ -434,8 +546,8 @@
       </div>
     </div>
     <div class="carousel-controls">
-      <button class="carousel-btn" id="prevBtn"><i class="ti ti-arrow-left"></i></button>
-      <button class="carousel-btn" id="nextBtn"><i class="ti ti-arrow-right"></i></button>
+      <button class="carousel-btn" id="prevBtn" aria-label="Anterior"><i class="ti ti-arrow-left"></i></button>
+      <button class="carousel-btn" id="nextBtn" aria-label="Siguiente"><i class="ti ti-arrow-right"></i></button>
       <div class="carousel-dots" id="carouselDots"></div>
     </div>
   </section>
@@ -575,8 +687,8 @@
       </div>
     </div>
     <div class="reviews-controls">
-      <button class="reviews-btn" id="reviewsPrev"><i class="ti ti-arrow-left"></i></button>
-      <button class="reviews-btn" id="reviewsNext"><i class="ti ti-arrow-right"></i></button>
+      <button class="reviews-btn" id="reviewsPrev" aria-label="Reseña anterior"><i class="ti ti-arrow-left"></i></button>
+      <button class="reviews-btn" id="reviewsNext" aria-label="Siguiente reseña"><i class="ti ti-arrow-right"></i></button>
     </div>
   </section>
 
@@ -586,8 +698,8 @@
       <h2>¿Tienes un evento en mente?</h2>
       <p>Cuéntanos qué necesitas y te enviamos una cotización en menos de 24 horas.</p>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-        <a href="pages/contacto.html" class="btn-primary" style="font-size:16px;padding:1rem 2.5rem;">Solicitar cotización</a>
-        <a href="pages/contacto.html" class="btn-secondary" style="font-size:16px;padding:1rem 2.5rem;">Llamar ahora</a>
+        <a href="pages/contacto" class="btn-primary" style="font-size:16px;padding:1rem 2.5rem;">Solicitar cotización</a>
+        <a href="pages/contacto" class="btn-secondary" style="font-size:16px;padding:1rem 2.5rem;">Llamar ahora</a>
       </div>
     </section>
 
@@ -642,7 +754,10 @@
     items.forEach((item,i)=>{
       const angle=(i/items.length)*2*Math.PI-Math.PI/2;
       const ix=cx+R*Math.cos(angle), iy=cy+R*Math.sin(angle);
-      item.style.left=(ix-52)+'px'; item.style.top=(iy-52)+'px';
+      // Posición en % del contenedor (no en px fijos) para que funcione igual
+      // sin importar el tamaño real de .wheel-container en cada breakpoint;
+      // el centrado del propio item lo hace el transform:translate(-50%,-50%) del CSS.
+      item.style.left=(ix/W*100)+'%'; item.style.top=(iy/H*100)+'%';
 
       // Línea base — siempre visible, continua
       const base=document.createElementNS('http://www.w3.org/2000/svg','line');
@@ -680,10 +795,10 @@
       }
 
       // Entrada orbital
-      item.style.opacity='0';item.style.transform='scale(0.4)';
+      item.style.opacity='0';item.style.transform='translate(-50%,-50%) scale(0.4)';
       setTimeout(()=>{
         item.style.transition='opacity .4s,transform .35s cubic-bezier(.4,0,.2,1),border-color .3s,background .3s,box-shadow .3s';
-        item.style.opacity='1';item.style.transform='scale(1)';
+        item.style.opacity='1';item.style.transform='translate(-50%,-50%) scale(1)';
       },200+i*55);
 
       item.addEventListener('mouseenter',()=>{clearTimeout(leaveTimer);activate(item,i);});
