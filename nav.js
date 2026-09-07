@@ -3,7 +3,7 @@
   const isInPages   = window.location.pathname.includes('/pages/');
   const ctaHref     = isInPages ? 'contacto'  : 'pages/contacto';
   const homeHref    = isInPages ? '../'   : './';
-  const logoSrc     = isInPages ? '../glitch-logo-white.png' : 'glitch-logo-white.png';
+  const logoSrc     = isInPages ? '../glitch-logo-produccion-audiovisual-cdmx.png' : 'glitch-logo-produccion-audiovisual-cdmx.png';
   const p           = isInPages ? '' : 'pages/';
 
   // Links originales — siempre visibles
@@ -44,13 +44,16 @@
     </li>`).join('');
 
   const waHref       = 'https://wa.me/message/NDOUJD4OSDRYI1';
-  const pulpoSrc     = isInPages ? '../img/pulpo-pixel.jpeg' : 'img/pulpo-pixel.jpeg';
-  const pixelOctopus = `<img src="${pulpoSrc}" alt="pulpo" style="height:56px;width:auto;vertical-align:middle;opacity:0.9;mix-blend-mode:screen;image-rendering:pixelated;" width="56" height="56" />`;
+  const pulpoSrc     = isInPages ? '../img/pulpo-pixelado-glitch.webp' : 'img/pulpo-pixelado-glitch.webp';
+  // alt="" a propósito: es un adorno y el texto "Proudly nerdy" que va junto
+  // ya dice lo mismo. Poner texto alternativo repetido en imágenes decorativas
+  // penaliza en accesibilidad y no aporta nada en SEO.
+  const pixelOctopus = `<img src="${pulpoSrc}" alt="" aria-hidden="true" style="height:56px;width:auto;vertical-align:middle;opacity:0.9;mix-blend-mode:screen;image-rendering:pixelated;" width="103" height="56" loading="lazy" decoding="async" />`;
 
   const navHTML = `
     <nav class="nav">
       <a href="${homeHref}" class="logo-link">
-        <img src="${logoSrc}" alt="GLiTCH - Producción Audiovisual" class="nav-logo-img" width="120" height="40" />
+        <img src="${logoSrc}" alt="GLiTCH — producción audiovisual integral para eventos en CDMX" class="nav-logo-img" width="400" height="351" />
       </a>
       <ul class="nav-links" id="navLinks">
         ${mainHTML}
@@ -78,7 +81,7 @@
   const footerHTML = `
     <footer class="footer">
       <a href="#" class="footer-logo-wrap footer-scroll-top" aria-label="Volver arriba">
-        <img src="${logoSrc}" alt="GLiTCH" class="footer-logo-img" width="80" height="27" />
+        <img src="${logoSrc}" alt="" aria-hidden="true" class="footer-logo-img" width="400" height="351" loading="lazy" decoding="async" />
       </a>
       <p class="footer-copy"><span>${new Date().getFullYear()} | GLITCH | CDMX | <a href="tel:+525619939997" style="color:inherit;text-decoration:none;">56 1993 9997</a></span></p>
       <a href="${isInPages ? 'proposito' : 'pages/proposito'}" class="footer-nerd" style="text-decoration:none;">

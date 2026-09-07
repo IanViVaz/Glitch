@@ -3,11 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <title>Contacto — Glitch</title>
   <meta name="description" content="Cotiza tu evento con GLiTCH: renta de audio, video, pantallas LED y traducción simultánea en CDMX. Respuesta por WhatsApp o formulario en menos de 24 horas." />
   <link rel="canonical" href="https://glitch.com.mx/pages/contacto" />
+  <meta property="og:image" content="https://glitch.com.mx/img/produccion-audiovisual-eventos-cdmx.webp" />
+  <meta property="og:image:alt" content="Contacto — GLiTCH producción audiovisual CDMX" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://glitch.com.mx/img/produccion-audiovisual-eventos-cdmx.webp" />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/tabler-icons.min.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -19,6 +26,10 @@
       align-items: start;
     }
 
+    /* h1 y h2 comparten estilo: el encabezado principal de esta página es un
+       h1 (toda página debe tener exactamente uno para buscadores), pero se ve
+       idéntico a como se veía antes. */
+    .contact-info h1,
     .contact-info h2 {
       font-size: 28px;
       font-weight: 500;
@@ -165,7 +176,7 @@
       position: absolute; inset: -2px;
       background:
         linear-gradient(rgba(10,10,15,0.9),rgba(10,10,15,0.9)),
-        url('../img/icons-pattern.webp');
+        url('../img/patron-iconos-equipo-audiovisual.webp');
       background-size: auto, 650px;
       background-position: top center, top center;
       background-repeat: no-repeat, repeat;
@@ -208,6 +219,42 @@
       color: var(--gold);
     }
   </style>
+  <!-- Datos estructurados (schema.org). Los leen Google para resultados
+       enriquecidos y los modelos de IA para entender de qué es el sitio. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://glitch.com.mx/pages/contacto#pagina",
+      "name": "Contacto",
+      "url": "https://glitch.com.mx/pages/contacto",
+      "description": "Cotiza tu evento con GLiTCH: renta de audio, video, pantallas LED y traducción simultánea en CDMX. Respuesta por WhatsApp o formulario en menos de 24 horas.",
+      "about": {
+        "@id": "https://glitch.com.mx/#negocio"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://glitch.com.mx/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contacto",
+          "item": "https://glitch.com.mx/pages/contacto"
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -216,7 +263,7 @@
 
       <!-- INFO DE CONTACTO -->
       <div class="contact-info">
-        <h2>Hablemos de tu evento</h2>
+        <h1>Hablemos de tu evento</h1>
         <p>Escríbenos los detalles de tu evento y deja que nuestro pulproductor se encargue del resto.</p>
 
         <a href="tel:+525619939997" class="contact-detail contact-detail-link" aria-label="Llamar a GLiTCH">

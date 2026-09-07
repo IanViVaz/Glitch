@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="preload" as="image" href="img/produccion-audiovisual-eventos-cdmx.webp" fetchpriority="high" />
   <title>GLiTCH | Producción Audiovisual Integral para Eventos en CDMX</title>
   <meta name="description" content="Renta de audio, video, traducción simultánea, pantallas LED y streaming para tu evento en CDMX y todo México. Un solo proveedor, un solo contacto. Cotiza hoy." />
   <meta property="og:title" content="GLiTCH | Producción Audiovisual Integral para Eventos en CDMX" />
@@ -13,6 +16,9 @@
   <meta name="twitter:title" content="GLiTCH | Producción Audiovisual Integral para Eventos en CDMX" />
   <meta name="twitter:description" content="Renta de audio, video, traducción simultánea, pantallas LED y streaming para tu evento en CDMX y todo México." />
   <link rel="canonical" href="https://glitch.com.mx/" />
+  <meta property="og:image" content="https://glitch.com.mx/img/produccion-audiovisual-eventos-cdmx.webp" />
+  <meta property="og:image:alt" content="Producción audiovisual integral para eventos en CDMX — GLiTCH" />
+  <meta name="twitter:image" content="https://glitch.com.mx/img/produccion-audiovisual-eventos-cdmx.webp" />
     <!-- AI agents: /llms.txt -->
   <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
@@ -24,6 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/tabler-icons.min.css"/>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800;900&display=swap" rel="stylesheet">
   <!-- Google tag (gtag.js) — pendiente: pega tu ID de medición de GA4 / conversión de Google Ads y descomenta antes de lanzar campañas
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -63,7 +70,7 @@
     /* Foto de fondo con efecto parallax */
     .hero-photo{
       position:absolute;inset:0;z-index:0;
-      background-image:url('img/hero-bg.webp');
+      background-image:url('img/produccion-audiovisual-eventos-cdmx.webp');
       background-size:cover;background-position:center top;
       filter:brightness(0.35) grayscale(0.3);
       transform:scale(1.08);
@@ -108,18 +115,21 @@
     .glitch-accent{color:var(--glitch-pink);}
 
     /* GLITCH — título gigante */
+    /* white-space:nowrap + tamaño en vw = "GLITCH" SIEMPRE en una sola línea
+       y centrado, sin importar el ancho del celular. El 13vw está calculado
+       para que la palabra completa quepa con margen en pantallas de 320px
+       en adelante (Syne 900 en mayúsculas es una tipografía muy ancha). */
     .hero-brand{
       font-family:var(--font-display);
-      font-size:clamp(80px,16vw,200px);
-      font-weight:900;line-height:0.9;
+      font-size:clamp(80px,13vw,200px);
+      font-weight:900;line-height:0.95;
       letter-spacing:-6px;
       color:var(--text-main);
       margin-bottom:1rem;
       opacity:0;animation:fadeUp .6s .2s forwards;
       text-transform:uppercase;
-      max-width:100%;
-      overflow-wrap:break-word;
-      word-break:break-word;
+      white-space:nowrap;
+      text-align:center;
     }
 
     .hero-sub-title{
@@ -208,6 +218,10 @@
     /* ══════════════════════════════
        CARRUSEL — NUESTROS SERVICIOS
     ══════════════════════════════ */
+    /* OJO: aquí NO va content-visibility. Se probó y rompe el carrusel: el JS
+       mide el ancho de la tarjeta (offsetWidth) al cargar la página para calcular
+       la posición inicial, y si la sección está "saltada" por content-visibility
+       esa medida da 0 y el carrusel arranca en blanco. */
     .carousel-section{background:var(--bg-base);overflow:hidden;border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);}
     .carousel-header{padding:4rem 3rem 2rem;}
     .carousel-track-wrapper{overflow:hidden;}
@@ -218,6 +232,15 @@
     .carousel-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,15,.55) 0%,rgba(10,10,15,.88) 55%,rgba(10,10,15,.97) 100%);opacity:0;transition:opacity .4s;z-index:1;}
     .carousel-card:hover::before{opacity:1;transform:scale(1);}
     .carousel-card:hover::after{opacity:1;}
+
+    /* La foto de cada tarjeta solo aparece al pasar el cursor encima. En un
+       celular no hay cursor, así que esa foto NUNCA se ve — pero el navegador
+       igual la descargaba. Con esto nos ahorramos ~900KB de imágenes en móvil
+       (que es justo donde llega el tráfico de los anuncios) sin tocar el
+       layout ni las medidas que usa el JS del carrusel. */
+    @media (hover:none){
+      .carousel-card::before{background-image:none;}
+    }
     .carousel-card-num,.carousel-card-icon,.carousel-card-body,.carousel-card-arrow{position:relative;z-index:2;}
     .carousel-card-num{font-family:var(--font-display);font-size:38px;font-weight:800;color:rgba(45,212,191,.1);line-height:1;margin-bottom:.8rem;transition:color .35s;}
     .carousel-card:hover .carousel-card-num{color:rgba(45,212,191,.18);}
@@ -314,7 +337,7 @@
       content:'';position:absolute;inset:0;
       background:
         linear-gradient(rgba(10,10,15,0.9),rgba(10,10,15,0.9)),
-        url('img/icons-pattern.webp');
+        url('img/patron-iconos-equipo-audiovisual.webp');
       background-size:auto,900px;
       background-position:top center,top center;
       background-repeat:no-repeat,repeat;
@@ -345,8 +368,8 @@
 
     @media(max-width:768px){
       .nav{padding:1rem 1.25rem;}
-      .hero-content{padding:1.5rem 1.25rem;}
-      .hero-brand{font-size:clamp(42px,15vw,90px);letter-spacing:-2px;}
+      .hero-content{padding:1.5rem 1.25rem;width:100%;}
+      .hero-brand{font-size:clamp(36px,12.5vw,90px);letter-spacing:-2px;}
       .hero-stats{gap:2rem;}
       .wheel-container{width:min(320px,88vw);height:min(320px,88vw);}
       .wheel-item{width:68px;height:68px;}
@@ -414,18 +437,41 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "ProfessionalService",
+    "@id": "https://glitch.com.mx/#negocio",
     "name": "GLiTCH",
+    "alternateName": "GLITCH Producción Audiovisual",
     "description": "Renta de equipo audiovisual para eventos en Ciudad de México y a nivel nacional — traducción simultánea, audio, pantallas LED, streaming e híbridos, silent party, podcast y artículos promocionales.",
-    "url": "https://glitch.com.mx",
+    "url": "https://glitch.com.mx/",
     "telephone": "+525619939997",
     "email": "contacto@glitch.com.mx",
+    "logo": "https://glitch.com.mx/glitch-logo-produccion-audiovisual-cdmx.png",
+    "image": "https://glitch.com.mx/img/produccion-audiovisual-eventos-cdmx.webp",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Ciudad de México",
+      "addressRegion": "CDMX",
       "addressCountry": "MX"
     },
-    "areaServed": "México",
+    "areaServed": [
+      { "@type": "City",    "name": "Ciudad de México" },
+      { "@type": "Country", "name": "México" }
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday"],
+        "opens": "10:00",
+        "closes": "14:00"
+      }
+    ],
+    "knowsLanguage": ["es-MX", "en"],
     "serviceType": [
       "Traducción simultánea",
       "Audio profesional",
@@ -445,7 +491,7 @@
 
   <!-- ══════ HERO ══════ -->
   <section class="hero" id="hero">
-    <div class="hero-photo" id="heroPhoto"></div>
+    <div class="hero-photo" id="heroPhoto" role="img" aria-label="Producción audiovisual de GLiTCH durante un evento en vivo en Ciudad de México"></div>
     <div class="hero-slide-panel"></div>
 
     <div class="hero-content">
@@ -475,15 +521,15 @@
         <span class="wheel-center-label">Selecciona<br>un servicio</span>
       </div>
 
-      <div class="wheel-item" data-img="img/audio.webp"       data-icon="ti ti-volume"       data-label="Audio profesional"       data-href="pages/audio"><i class="ti ti-volume"></i><span>Audio</span></div>
-      <div class="wheel-item" data-img="img/video.webp"       data-icon="ti ti-video"        data-label="Video y proyección"      data-href="pages/video"><i class="ti ti-video"></i><span>Video</span></div>
-      <div class="wheel-item" data-img="img/iluminacion.webp" data-icon="ti ti-bulb"         data-label="Iluminación"             data-href="pages/iluminacion"><i class="ti ti-bulb"></i><span>Iluminación</span></div>
-      <div class="wheel-item" data-img="img/led.webp"         data-icon="ti ti-device-tv"    data-label="Pantallas y banners LED" data-href="pages/led"><i class="ti ti-device-tv"></i><span>LED</span></div>
-      <div class="wheel-item" data-img="img/traduccion.webp"  data-icon="ti ti-headphones"   data-label="Traducción simultánea"   data-href="pages/traduccion"><i class="ti ti-headphones"></i><span>Traducción</span></div>
-      <div class="wheel-item" data-img="img/hibridos.webp"    data-icon="ti ti-radio"        data-label="Eventos híbridos"        data-href="pages/contacto"><i class="ti ti-radio"></i><span>Eventos híbridos</span></div>
-      <div class="wheel-item" data-img="img/silent.webp"      data-icon="ti ti-headset"      data-label="Silent Party / Audífonos LED" data-href="pages/silent-party"><i class="ti ti-headset"></i><span>Silent Party</span></div>
-      <div class="wheel-item" data-img="img/streaming.webp"   data-icon="ti ti-broadcast"    data-label="Streaming"               data-href="pages/streaming"><i class="ti ti-broadcast"></i><span>Streaming</span></div>
-      <div class="wheel-item" data-img="img/podcast.webp"     data-icon="ti ti-microphone-2" data-label="Equipo para Podcast"     data-href="pages/podcast"><i class="ti ti-microphone-2"></i><span>Podcast</span></div>
+      <div class="wheel-item" data-img="img/renta-equipo-audio-eventos-cdmx.webp"       data-icon="ti ti-volume"       data-label="Audio profesional"       data-href="pages/audio"><i class="ti ti-volume"></i><span>Audio</span></div>
+      <div class="wheel-item" data-img="img/renta-equipo-video-proyeccion-eventos.webp"       data-icon="ti ti-video"        data-label="Video y proyección"      data-href="pages/video"><i class="ti ti-video"></i><span>Video</span></div>
+      <div class="wheel-item" data-img="img/renta-iluminacion-eventos-cdmx.webp" data-icon="ti ti-bulb"         data-label="Iluminación"             data-href="pages/iluminacion"><i class="ti ti-bulb"></i><span>Iluminación</span></div>
+      <div class="wheel-item" data-img="img/renta-pantallas-led-eventos-cdmx.webp"         data-icon="ti ti-device-tv"    data-label="Pantallas y banners LED" data-href="pages/led"><i class="ti ti-device-tv"></i><span>LED</span></div>
+      <div class="wheel-item" data-img="img/equipo-traduccion-simultanea-cdmx.webp"  data-icon="ti ti-headphones"   data-label="Traducción simultánea"   data-href="pages/traduccion"><i class="ti ti-headphones"></i><span>Traducción</span></div>
+      <div class="wheel-item" data-img="img/eventos-hibridos-audio-video-cdmx.webp"    data-icon="ti ti-radio"        data-label="Eventos híbridos"        data-href="pages/streaming"><i class="ti ti-radio"></i><span>Eventos híbridos</span></div>
+      <div class="wheel-item" data-img="img/audifonos-led-silent-party-cdmx.webp"      data-icon="ti ti-headset"      data-label="Silent Party / Audífonos LED" data-href="pages/silent-party"><i class="ti ti-headset"></i><span>Silent Party</span></div>
+      <div class="wheel-item" data-img="img/streaming-eventos-hibridos-cdmx.webp"   data-icon="ti ti-broadcast"    data-label="Streaming"               data-href="pages/streaming"><i class="ti ti-broadcast"></i><span>Streaming</span></div>
+      <div class="wheel-item" data-img="img/renta-equipo-podcast-cdmx.webp"     data-icon="ti ti-microphone-2" data-label="Equipo para Podcast"     data-href="pages/podcast"><i class="ti ti-microphone-2"></i><span>Podcast</span></div>
     </div>
 
     <p style="font-size:13px;color:var(--text-dim);margin-top:2.5rem;position:relative;z-index:2;">
@@ -503,42 +549,42 @@
     </div>
     <div class="carousel-track-wrapper">
       <div class="carousel-track" id="carouselTrack">
-        <a href="pages/audio" class="carousel-card" style="--card-img:url('img/audio.webp')">
+        <a href="pages/audio" class="carousel-card" style="--card-img:url('img/renta-equipo-audio-eventos-cdmx.webp')">
           <div class="carousel-card-num">01</div><div class="carousel-card-icon"><i class="ti ti-volume"></i></div>
           <div class="carousel-card-body"><h3>Equipo de Audio para Eventos</h3><p>Asegúrate de que tu mensaje se escuche fuerte y claro. Ofrecemos renta de equipo de audio profesional, micrófonos y bocinas para conferencias, congresos y producciones en la Ciudad de México y a nivel nacional. Sonido impecable, sin complicaciones y operado por expertos.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/iluminacion" class="carousel-card" style="--card-img:url('img/iluminacion.webp')">
+        <a href="pages/iluminacion" class="carousel-card" style="--card-img:url('img/renta-iluminacion-eventos-cdmx.webp')">
           <div class="carousel-card-num">02</div><div class="carousel-card-icon"><i class="ti ti-bulb"></i></div>
           <div class="carousel-card-body"><h3>Iluminación para Producciones y Conferencias</h3><p>La luz correcta cambia por completo cómo se percibe tu evento. Brindamos renta y montaje de equipo de iluminación para conferencias, grabaciones y activaciones en todo México. Tu escenario, video o presentación lucirá impecable.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/led" class="carousel-card carousel-card--pink" style="--card-img:url('img/led.webp')">
+        <a href="pages/led" class="carousel-card carousel-card--pink" style="--card-img:url('img/renta-pantallas-led-eventos-cdmx.webp')">
           <div class="carousel-card-num">03</div><div class="carousel-card-icon"><i class="ti ti-device-tv"></i></div>
           <div class="carousel-card-body"><h3>Pantallas LED y Banners</h3><p>Haz que tu contenido sea el centro de atención. Ofrecemos renta de pantallas LED gigantes y banners digitales para eventos corporativos, congresos y exposiciones en la Ciudad de México y a nivel nacional. Instalación rápida, calidad de imagen impecable y soporte técnico durante todo tu evento.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/traduccion" class="carousel-card" style="--card-img:url('img/traduccion.webp')">
+        <a href="pages/traduccion" class="carousel-card" style="--card-img:url('img/equipo-traduccion-simultanea-cdmx.webp')">
           <div class="carousel-card-num">04</div><div class="carousel-card-icon"><i class="ti ti-headphones"></i></div>
           <div class="carousel-card-body"><h3>Equipo de Traducción Simultánea</h3><p>Ofrecemos renta de cabinas, micrófonos y audífonos para traducción simultánea en eventos corporativos, congresos y reuniones internacionales en la Ciudad de México y a nivel nacional. Te damos todo el soporte técnico, cabinas y diademas necesarias para que tus conferencias y ponencias internacionales sean un éxito total.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/silent-party" class="carousel-card" style="--card-img:url('img/silent.webp')">
+        <a href="pages/silent-party" class="carousel-card" style="--card-img:url('img/audifonos-led-silent-party-cdmx.webp')">
           <div class="carousel-card-num">05</div><div class="carousel-card-icon"><i class="ti ti-headset"></i></div>
           <div class="carousel-card-body"><h3>Audífonos LED: Silent Party y Conferencias Silenciosas</h3><p>Innova en tus eventos con una experiencia de audio inmersiva y sin ruido exterior. En GLITCH ofrecemos renta de audífonos inalámbricos para silent parties, conferencias silenciosas y activaciones en la Ciudad de México y a nivel nacional. Transmite múltiples canales de audio al mismo tiempo con una calidad impecable, ideal para eventos con restricciones de sonido o escenarios simultáneos.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/streaming" class="carousel-card" style="--card-img:url('img/streaming.webp')">
+        <a href="pages/streaming" class="carousel-card" style="--card-img:url('img/streaming-eventos-hibridos-cdmx.webp')">
           <div class="carousel-card-num">06</div><div class="carousel-card-icon"><i class="ti ti-broadcast"></i></div>
           <div class="carousel-card-body"><h3>Producción de Streaming y Eventos Híbridos</h3><p>Conecta con tu audiencia en cualquier parte del mundo sin fallas de conexión. Ofrecemos el servicio completo de transmisión en vivo (streaming) y producción de eventos híbridos corporativos en la Ciudad de México y a nivel nacional. Nos encargamos de las cámaras, el audio y el switcheo en tiempo real para que tu congreso o webinar se vea profesional, tanto en el escenario como en la pantalla de cada asistente virtual.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/podcast" class="carousel-card" style="--card-img:url('img/podcast.webp')">
+        <a href="pages/podcast" class="carousel-card" style="--card-img:url('img/renta-equipo-podcast-cdmx.webp')">
           <div class="carousel-card-num">07</div><div class="carousel-card-icon"><i class="ti ti-microphone-2"></i></div>
           <div class="carousel-card-body"><h3>Equipo y Producción para Podcast</h3><p>En GLITCH ofrecemos renta de equipo y producción completa para videopodcasts y podcasts corporativos en la Ciudad de México y a nivel nacional. Llevamos e instalamos micrófonos profesionales, cámaras, iluminación y consolas directamente a tu oficina o locación, dejando todo listo para grabar o transmitir en vivo con imagen y sonido impecables.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>
         </a>
-        <a href="pages/contacto" class="carousel-card" style="--card-img:url('img/video.webp')">
+        <a href="pages/articulos" class="carousel-card" style="--card-img:url('img/eventos-hibridos-audio-video-cdmx.webp')">
           <div class="carousel-card-num">08</div><div class="carousel-card-icon"><i class="ti ti-gift"></i></div>
           <div class="carousel-card-body"><h3>Artículos Publicitarios y Promocionales para Eventos</h3><p>Haz que tu marca acompañe a tus asistentes incluso después de que termine la conferencia. En GLITCH complementamos tu producción con artículos publicitarios y promocionales. Desde lanyards y gafetes hasta regalos ejecutivos de alta calidad, nos aseguramos de que tu identidad visual destaque en cada detalle de tu evento o activación.</p></div>
           <div class="carousel-card-arrow">Más información <i class="ti ti-arrow-right"></i></div>

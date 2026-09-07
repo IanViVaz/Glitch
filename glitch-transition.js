@@ -6,7 +6,7 @@
 
   // Crear el overlay de glitch
   const isInPages = window.location.pathname.includes('/pages/');
-  const whiteLogoSrc = isInPages ? '../glitch-logo-white.png' : 'glitch-logo-white.png';
+  const whiteLogoSrc = isInPages ? '../glitch-logo-produccion-audiovisual-cdmx.png' : 'glitch-logo-produccion-audiovisual-cdmx.png';
   const overlay = document.createElement('div');
   overlay.id = 'glitch-overlay';
   overlay.innerHTML = `
@@ -15,7 +15,7 @@
       <div class="go-bar b2"></div>
       <div class="go-bar b3"></div>
       <div class="go-logo">
-        <img src="${whiteLogoSrc}" alt="Glitch"/>
+        <img src="${whiteLogoSrc}" alt="" aria-hidden="true" width="400" height="351" decoding="async"/>
       </div>
     </div>
   `;

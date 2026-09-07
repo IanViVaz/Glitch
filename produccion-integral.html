@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <title>Producción Integral para Eventos en CDMX | GLiTCH</title>
   <meta name="description" content="Audio, video, iluminación, traducción simultánea y streaming coordinados por un solo equipo técnico. Un proveedor, cero glitches. Cotiza hoy." />
   <meta property="og:title" content="Producción Integral para Eventos en CDMX | GLiTCH" />
@@ -10,6 +12,10 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://glitch.com.mx/produccion-integral" />
   <link rel="canonical" href="https://glitch.com.mx/produccion-integral" />
+  <meta property="og:image" content="https://glitch.com.mx/img/produccion-audiovisual-eventos-cdmx.webp" />
+  <meta property="og:image:alt" content="Producción integral de eventos en CDMX — GLiTCH" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://glitch.com.mx/img/produccion-audiovisual-eventos-cdmx.webp" />
   <!--
     Landing exclusiva para campañas de Google Ads — a propósito NO carga nav.js,
     así que no tiene el menú ni el dropdown del resto del sitio. Por eso mismo
@@ -22,6 +28,7 @@
   <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/tabler-icons.min.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -260,13 +267,143 @@
       .pi-header { padding: 1.25rem 1.25rem 0; }
     }
   </style>
+  <!-- Datos estructurados (schema.org). Los leen Google para resultados
+       enriquecidos y los modelos de IA para entender de qué es el sitio. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://glitch.com.mx/produccion-integral#servicio",
+      "name": "Producción integral de eventos",
+      "serviceType": "Producción audiovisual integral",
+      "description": "Audio, video, iluminación, traducción simultánea y streaming coordinados por un solo equipo técnico. Un proveedor, cero glitches. Cotiza hoy.",
+      "url": "https://glitch.com.mx/produccion-integral",
+      "provider": {
+        "@id": "https://glitch.com.mx/#negocio"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Ciudad de México"
+        },
+        {
+          "@type": "Country",
+          "name": "México"
+        }
+      ],
+      "image": "https://glitch.com.mx/img/produccion-audiovisual-eventos-cdmx.webp"
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://glitch.com.mx/#negocio",
+      "name": "GLiTCH",
+      "alternateName": "GLITCH Producción Audiovisual",
+      "description": "Producción audiovisual integral para eventos: audio, video, iluminación, pantallas LED, traducción simultánea y streaming en Ciudad de México y toda la República.",
+      "url": "https://glitch.com.mx/",
+      "telephone": "+525619939997",
+      "email": "contacto@glitch.com.mx",
+      "logo": "https://glitch.com.mx/glitch-logo-produccion-audiovisual-cdmx.png",
+      "image": "https://glitch.com.mx/img/produccion-audiovisual-eventos-cdmx.webp",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ciudad de México",
+        "addressRegion": "CDMX",
+        "addressCountry": "MX"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Ciudad de México"
+        },
+        {
+          "@type": "Country",
+          "name": "México"
+        }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday"
+          ],
+          "opens": "10:00",
+          "closes": "14:00"
+        }
+      ],
+      "knowsLanguage": [
+        "es-MX",
+        "en"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué incluye la Producción Integral?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Audio, video, iluminación, traducción simultánea y streaming, coordinados por un solo equipo técnico."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo agregar servicios como silent party, podcast o artículos publicitarios?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí — son servicios adicionales que puedes sumar a tu Producción Integral según las necesidades de tu evento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Con cuánta anticipación debo reservar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Recomendamos al menos un par de semanas antes, aunque podemos atender solicitudes urgentes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Trabajan fuera de la Ciudad de México?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Por supuesto. GLiTCH viaja a cualquier estado de la república."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿La cotización incluye instalación y operación el día del evento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí — el precio de tu Producción Integral incluye montaje, operación técnica durante el evento y desmontaje."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
   <!-- HEADER MÍNIMO — solo logo, sin menú de navegación (landing de campaña) -->
   <header class="pi-header">
     <a href="/" aria-label="GLiTCH — ir al inicio">
-      <img src="glitch-logo-white.png" alt="GLiTCH" width="120" height="40" />
+      <img src="glitch-logo-produccion-audiovisual-cdmx.png" alt="GLiTCH — producción audiovisual integral para eventos en CDMX" width="400" height="351" />
     </a>
     <a href="tel:+525619939997" class="pi-header-phone"><i class="ti ti-phone"></i> 56 1993 9997</a>
   </header>

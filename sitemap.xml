@@ -1,15 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://glitch.com.mx/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://glitch.com.mx/pages/audio</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://glitch.com.mx/pages/video</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://glitch.com.mx/pages/iluminacion</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://glitch.com.mx/pages/led</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://glitch.com.mx/pages/traduccion</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://glitch.com.mx/pages/silent-party</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://glitch.com.mx/pages/streaming</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://glitch.com.mx/pages/podcast</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://glitch.com.mx/pages/articulos</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://glitch.com.mx/pages/proposito</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://glitch.com.mx/pages/contacto</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<!--
+  Sitemap con extensión de imágenes (xmlns:image).
+  Las fotos de los servicios se pintan como fondo CSS, así que Google no las
+  descubre solo rastreando el HTML. Declararlas aquí es la forma oficial de
+  que aun así puedan indexarse en Google Imágenes.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://glitch.com.mx/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://glitch.com.mx/img/produccion-audiovisual-eventos-cdmx.webp</image:loc>
+      <image:title>Producción audiovisual integral para eventos en CDMX</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://glitch.com.mx/pages/audio</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://glitch.com.mx/img/renta-equipo-audio-eventos-cdmx.webp</image:loc>
+      <image:title>Renta de equipo de audio profesional para eventos en CDMX</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://glitch.com.mx/pages/video</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://glitch.com.mx/img/renta-equipo-video-proyeccion-eventos.webp</image:loc>
+      <image:title>Renta de equipo de video y proyección para eventos</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://glitch.com.mx/pages/iluminacion</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://glitch.com.mx/img/renta-iluminacion-eventos-cdmx.webp</image:loc>
+      <image:title>Renta de iluminación para eventos y conferencias en CDMX</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://glitch.com.mx/pages/led</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://glitch.com.mx/img/renta-pantallas-led-eventos-cdmx.webp</image:loc>
+      <image:title>Renta de pantallas LED gigantes para eventos en CDMX</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://glitch.com.mx/pages/traduccion</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://glitch.com.mx/img/equipo-traduccion-simultanea-cdmx.webp</image:loc>
+      <image:title>Renta de equipo de traducción simultánea en CDMX</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://glitch.com.mx/pages/silent-party</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://glitch.com.mx/img/audifonos-led-silent-party-cdmx.webp</image:loc>
+      <image:title>Renta de audífonos LED para silent party en CDMX</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://glitch.com.mx/pages/streaming</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://glitch.com.mx/img/streaming-eventos-hibridos-cdmx.webp</image:loc>
+      <image:title>Streaming y producción de eventos híbridos en CDMX</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://glitch.com.mx/pages/podcast</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://glitch.com.mx/img/renta-equipo-podcast-cdmx.webp</image:loc>
+      <image:title>Renta de equipo para podcast y videopodcast en CDMX</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://glitch.com.mx/pages/articulos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://glitch.com.mx/img/eventos-hibridos-audio-video-cdmx.webp</image:loc>
+      <image:title>Artículos publicitarios y promocionales para eventos en CDMX</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://glitch.com.mx/pages/proposito</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://glitch.com.mx/pages/contacto</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
 </urlset>
